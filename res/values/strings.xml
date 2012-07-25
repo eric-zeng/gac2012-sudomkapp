@@ -1,4 +1,6 @@
 <resources>
+    
+<!--  	Main Activity Strings -->
 
     <string name="app_name">Map Journal</string>
     <string name="new_trip">New Trip</string>
@@ -6,6 +8,15 @@
     <string name="previous_trips">Previous Trips</string>
     <string name="menu_settings">Settings</string>
     <string name="title">Map Journal</string>
-    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_main_menu">Map Journal</string>
+    
+<!-- New Trip Activity Strings  -->
+    <string name="new_trip_title">Enter a name for your trip</string>
+	<string name="text_box_message">Trip name</string>
+	<string name="submit">Submit</string>
 
+<!--  Invalid name popup -->
+	<string name="invalid_text_alert">Please enter a valid name</string>
+	<string name="dismiss">Close</string>
+	
 </resources>
