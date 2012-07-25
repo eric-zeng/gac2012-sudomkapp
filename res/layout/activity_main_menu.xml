@@ -3,12 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainMenuActivity" />
+    <Button android:id="@+id/new_trip"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/new_trip"
+            android:onClick="createNewTrip" />
+    
+    <Button android:id="@+id/resume_trip"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/resume_trip"
+            android:onClick="resumeTrip" />
+    
+    <Button android:id="@+id/previous_trips"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/previous_trips"
+            android:onClick="previousTrips" />
 
 </RelativeLayout>
