@@ -2,7 +2,9 @@ package com.example.mapjournal;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class MainMenuActivity extends Activity {
 
@@ -16,5 +18,10 @@ public class MainMenuActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_menu, menu);
         return true;
+    }
+    
+    public void createNewTrip(View view){
+    	Intent intent = new Intent (MainMenuActivity.this, NewTrip.class);
+    	startActivity(intent);
     }
 }

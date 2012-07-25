@@ -1,10 +1,11 @@
 <resources>
 
-    <string name="app_name">MapJournal</string>
+    <string name="app_name">Map Journal</string>
     <string name="new_trip">New Trip</string>
     <string name="resume_trip">Resume Trip</string>	
     <string name="previous_trips">Previous Trips</string>
     <string name="menu_settings">Settings</string>
+    <string name="title">Map Journal</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
 
 </resources>
