@@ -1,14 +1,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/blue" 
+    android:padding="16dip">
 
-    <TextView
+    <Button
+        android:id="@+id/new_trip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainMenuActivity" />
+        android:onClick="createNewTrip"
+        android:text="@string/new_trip" />
+
+    <Button
+        android:id="@+id/resume_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/new_trip"
+        android:layout_marginTop="16dp"
+        android:onClick="resumeTrip"
+        android:text="@string/resume_trip" />
+
+    <Button
+        android:id="@+id/previous_trips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/resume_trip"
+        android:layout_marginTop="16dp"
+        android:onClick="previousTrips"
+        android:text="@string/previous_trips" />
 
 </RelativeLayout>
