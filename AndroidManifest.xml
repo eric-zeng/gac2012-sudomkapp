@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name="NewTrip"></activity>
+        <activity android:name="PreviousTripsActivity"></activity>
         
         <activity
             android:name=".MapJournelMapActivity"
