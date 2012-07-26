@@ -1,6 +1,8 @@
 package com.example.mapjournal;
 
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.TextView;
@@ -14,12 +16,16 @@ import android.widget.Toast;
 
 public class PreviousTripsActivity extends ListActivity 
 {
-
+	DBOpenHelper db = new DBOpenHelper(this);
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_previous_trips);
-        String[] tripNames = new String[]{"Trip 1", "Trip 2", "Trip 3", "View All"};
+        db.addPoint(new Point("hi", "cali", 5, 6, 6, "fun"));
+        db.addPoint(new Point("new", "sanfran", 5, 6, 6, "dogs"));
+        ArrayList<String> tripNames = new ArrayList<String>();
+        tripNames = db.getAllTrips();
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));
         
 //        TextView txtProduct = (TextView) findViewById(R.id.product_label);
