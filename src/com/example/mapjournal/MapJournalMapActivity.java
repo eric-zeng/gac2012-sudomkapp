@@ -122,7 +122,7 @@ public class MapJournalMapActivity extends MapActivity {
 		Drawable drawable=this.getResources().getDrawable(R.drawable.androidmarker);
 		MapTestItemizedOverlay itemizedOverlay = new MapTestItemizedOverlay(drawable, this);
 		GeoPoint point =new GeoPoint((int)(latitude*1E6), (int)(longitude*1E6));
-		OverlayItem overlayItem = new OverlayItem(point, "Hello map", "I'm in somewhere");
+		OverlayItem overlayItem = new OverlayItem(point, title, snippet);
 		itemizedOverlay.addOverlay(overlayItem);
 		mapOverlays.add(itemizedOverlay);
 		return 0;
