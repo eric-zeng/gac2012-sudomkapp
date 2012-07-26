@@ -23,11 +23,8 @@
 <!-- 	Used in addPointActivity, MapJournelMapActivity and MapTestItemizedOverlay -->
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
-<<<<<<< HEAD
     <string name="title_get_location">Check In!</string>
-=======
-    <string name="title_get_location">Get Loc</string>
->>>>>>> 83c02f2b77136274b598524de74351fd587b678f
+
     <string name="title_activity_add_point">Check In</string>
 	
 </resources>

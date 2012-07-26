@@ -21,13 +21,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MapJournalMapActivity extends MapActivity {
-
+	public final static String ID = "com.example.maptest.MainActivity.ID"; 
     public LocationManager locationManager;
     private final static String TAG="MainActivity";
     public LocationListener locationListener;
     public MapView mapView;
     public final static String LONGITUDE = "com.example.maptest.MainActivity.LONGITUDE";
     public final static String LATITUDE = "com.example.maptest.MainActivity.LATITUDE";
+    private double latitude, longitude;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +76,11 @@ public class MapJournalMapActivity extends MapActivity {
 		double latitude = lastKnownLocation.getLatitude();
 		double longitude = lastKnownLocation.getLongitude();
 		addPoint(latitude, longitude, "Initial Loc", "I'm in somewhere");
+		Intent intent = getIntent();
+		if(intent.getBooleanExtra(addPointActivity.ADD_SUCCESS, false))
+		{
+			addPoint(latitude, longitude, )
+		}
     }
 
     @Override
@@ -92,8 +98,8 @@ public class MapJournalMapActivity extends MapActivity {
 	{
 		String locationProvider = LocationManager.NETWORK_PROVIDER;
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-		double latitude = lastKnownLocation.getLatitude();
-		double longitude = lastKnownLocation.getLongitude();
+		latitude = lastKnownLocation.getLatitude();
+		longitude = lastKnownLocation.getLongitude();
 		
 		Context context = getApplicationContext();
 		CharSequence text = "Latitude: "+Double.toString(latitude)

@@ -1,5 +1,5 @@
 package com.example.mapjournal;
-
+//Created by Leo
 import java.util.ArrayList;
 
 import android.content.Context;

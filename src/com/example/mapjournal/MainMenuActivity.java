@@ -1,12 +1,9 @@
 package com.example.mapjournal;
-<<<<<<< HEAD
 //Created by Eric
 //Changed by Leo
-=======
+
 
 import java.util.ArrayList;
-
->>>>>>> 83c02f2b77136274b598524de74351fd587b678f
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;

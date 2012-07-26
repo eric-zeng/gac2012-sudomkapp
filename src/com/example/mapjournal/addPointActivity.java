@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 public class addPointActivity extends Activity {
 	double longitude, latitude;
-	
+	private String tripName = "testTrip1";// Change it before release!!!!
+	public static final String ADD_SUCCESS = "com.example.mapjournal.addPointActivity.ADD_SUCCESS";
+	public static final String POINT_ID = "com.example.mapjournal.addPointActivity.POINT_ID";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +40,13 @@ public class addPointActivity extends Activity {
 		Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
 		toast.show();
 		
-
+		
+		DBOpenHelper db = new DBOpenHelper(this);
+		long id = db.addPoint(new Point(name, tripName, (int)(latitude*1E6), (int)(longitude*1E6), 123456, note));
+		
+		
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
+		intent.putExtra(ADD_SUCCESS, true);
 		startActivity(intent);
     	return 0;
     }
