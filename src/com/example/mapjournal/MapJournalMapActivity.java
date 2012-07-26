@@ -79,7 +79,7 @@ public class MapJournalMapActivity extends MapActivity {
 		Intent intent = getIntent();
 		if(intent.getBooleanExtra(addPointActivity.ADD_SUCCESS, false))
 		{
-			addPoint(latitude, longitude, )
+			addPoint(latitude, longitude, Long.toString(intent.getLongExtra(addPointActivity.POINT_ID, -1)), "");
 		}
     }
 

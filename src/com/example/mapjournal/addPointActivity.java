@@ -47,6 +47,7 @@ public class addPointActivity extends Activity {
 		
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		intent.putExtra(ADD_SUCCESS, true);
+		intent.putExtra(POINT_ID, id);
 		startActivity(intent);
     	return 0;
     }
