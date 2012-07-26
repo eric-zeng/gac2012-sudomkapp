@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
@@ -13,6 +14,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -63,6 +65,8 @@ public class MapJournalMapActivity extends MapActivity {
         
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 5, locationListener);
 		String locationProvider = LocationManager.NETWORK_PROVIDER;
+		
+		// add all trip points, and update location
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
 		double latitude = lastKnownLocation.getLatitude();
 		double longitude = lastKnownLocation.getLongitude();
@@ -116,6 +120,44 @@ public class MapJournalMapActivity extends MapActivity {
 		}
 		return 0;
 	}
+	public class MapTestItemizedOverlay extends  ItemizedOverlay {
+
+		private ArrayList <OverlayItem> mOverlays = new ArrayList<OverlayItem>();
+		Context mContext;
+		public MapTestItemizedOverlay(Drawable defaultMarker, Context context) {
+			super(boundCenterBottom(defaultMarker));
+			// TODO Auto-generated constructor stub
+			mContext=context;
+		}
+
+		@Override
+		protected OverlayItem createItem(int arg0) {
+			// TODO Auto-generated method stub
+			return mOverlays.get(arg0);
+		}
+		public void addOverlay(OverlayItem overlay)
+		{
+			mOverlays.add(overlay);
+			populate();
+		}
+		@Override
+		public int size() {
+			// TODO Auto-generated method stub
+			return mOverlays.size();
+		}
+		@Override
+		protected boolean onTap(int index)
+		{
+			Toast.makeText(mContext, mOverlays.get(index).getTitle().toString()
+						+", Latitude: "+mOverlays.get(index).getPoint().getLatitudeE6(),
+							Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(MapJournalMapActivity.this, JournalEntryActivity.class);
+			intent.putExtra(ID, Long.parseLong(mOverlays.get(index).getTitle().toString()));
+			startActivity(intent);
+			return super.onTap(index);
+		}
+	}
+
 	private int addPoint(double latitude, double longitude, String title, String snippet)
 	{
 		List <Overlay> mapOverlays = mapView.getOverlays();
@@ -129,3 +171,4 @@ public class MapJournalMapActivity extends MapActivity {
 	}
     
 }
+
