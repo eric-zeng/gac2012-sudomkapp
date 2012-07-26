@@ -15,30 +15,43 @@
 
     <EditText
         android:id="@+id/text_editor"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_edit_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:inputType="text" >
+        android:inputType="text"
+        android:scrollHorizontally="false" >
     </EditText>
+
+    <Button
+        android:id="@+id/submit_changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/text_editor"
+        android:onClick="submitEdit"
+        android:text="@string/submit" />
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/text_editor"
-        android:text="@string/cancel"
-        android:onClick="gotoMap" />
-		
+        android:layout_alignBaseline="@+id/submit_changes"
+        android:layout_alignBottom="@+id/submit_changes"
+        android:layout_marginLeft="32dp"
+        android:layout_toRightOf="@+id/submit_changes"
+        android:onClick="gotoMap"
+        android:text="@string/cancel" />
     <Button
-        android:id="@+id/submit_changes"
+        android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/submit"
-        android:onClick="submitEdit" />
+        android:layout_alignBaseline="@+id/cancel"
+        android:layout_alignBottom="@+id/cancel"
+        android:layout_marginLeft="32dp"
+        android:layout_toRightOf="@+id/cancel"
+        android:onClick="deletePoint"
+        android:text="@string/delete" />
 
 </RelativeLayout>

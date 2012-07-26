@@ -24,7 +24,6 @@ public class JournalEntryActivity extends Activity {
 		
 		// Retrieve point from map
 		Intent intent = getIntent();
-		String ID = "";
 		pointID = intent.getLongExtra(MapJournalMapActivity.ID, pointID);
 		
 		// Retrieve current text of point from database
@@ -41,6 +40,11 @@ public class JournalEntryActivity extends Activity {
 	public void submitEdit(View view){
 		note = editor.getText().toString();
 		db.updateNote(pointID, note);
+		gotoMap();
+	}
+	
+	public void deletePoint(){
+		db.deletePoint(pointID);
 		gotoMap();
 	}
 	
