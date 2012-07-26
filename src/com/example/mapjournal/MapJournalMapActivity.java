@@ -61,25 +61,17 @@ public class MapJournalMapActivity extends MapActivity {
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         
-        //add a layer with our position marker
-//        List <Overlay> mapOverlays = mapView.getOverlays();
-//        Drawable drawable=this.getResources().getDrawable(R.drawable.androidmarker);
-//        MapTestItemizedOverlay itemizedOverlay = new MapTestItemizedOverlay(drawable, this);
-//        GeoPoint point =new GeoPoint(19240000, -99120000);
-//        OverlayItem overlayItem = new OverlayItem(point, "Hello map", "I'm in somewhere");
-//        itemizedOverlay.addOverlay(overlayItem);
-//        mapOverlays.add(itemizedOverlay);
-        
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 5, locationListener);
 		String locationProvider = LocationManager.NETWORK_PROVIDER;
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
 		double latitude = lastKnownLocation.getLatitude();
 		double longitude = lastKnownLocation.getLongitude();
-		addPoint(latitude, longitude, "Initial Loc", "I'm in somewhere");
 		Intent intent = getIntent();
 		if(intent.getBooleanExtra(addPointActivity.ADD_SUCCESS, false))
 		{
-			addPoint(latitude, longitude, Long.toString(intent.getLongExtra(addPointActivity.POINT_ID, -1)), "");
+			addPoint(intent.getDoubleExtra(LATITUDE, -10000), 
+						intent.getDoubleExtra(LONGITUDE, -100000),
+						Long.toString(intent.getLongExtra(addPointActivity.POINT_ID, -1)), "");
 		}
     }
 
@@ -130,7 +122,7 @@ public class MapJournalMapActivity extends MapActivity {
 		Drawable drawable=this.getResources().getDrawable(R.drawable.androidmarker);
 		MapTestItemizedOverlay itemizedOverlay = new MapTestItemizedOverlay(drawable, this);
 		GeoPoint point =new GeoPoint((int)(latitude*1E6), (int)(longitude*1E6));
-		OverlayItem overlayItem = new OverlayItem(point, "Hello map", "I'm in somewhere");
+		OverlayItem overlayItem = new OverlayItem(point, title, snippet);
 		itemizedOverlay.addOverlay(overlayItem);
 		mapOverlays.add(itemizedOverlay);
 		return 0;

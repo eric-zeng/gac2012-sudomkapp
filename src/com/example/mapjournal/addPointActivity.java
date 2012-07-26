@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -35,21 +36,28 @@ public class addPointActivity extends Activity {
     	String name = ((EditText)findViewById(R.id.name)).getText().toString();
     	String note = ((EditText)findViewById(R.id.notes)).getText().toString();
 		Context context = getApplicationContext();
-		CharSequence text = "Call database write here. name: "+name+"   note: "+ note + "   Latitude: "+Double.toString(latitude)
-							+ "   Longitude: "+Double.toString(longitude);
-		Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
-		toast.show();
+
 		
 	    //Retrieve current trip from preferences 
         SharedPreferences prefs = getPreferences(0);
-        String currentTrip = prefs.getString("current", null);		
+        String currentTrip = prefs.getString("current", null);	
+        Log.d("Trip1", currentTrip);
+        
 		DBOpenHelper db = new DBOpenHelper(this);
 		long id = db.addPoint(new Point(name, currentTrip, (int)(latitude*1E6), (int)(longitude*1E6), 123456, note));
+		Log.d("ID: ", Long.toString(id));
+		CharSequence text = "ID: " + Long.toString(id) + "   name: "+name+"   note: "+ note + "   Latitude: "+Double.toString(latitude)
+				+ "   Longitude: "+Double.toString(longitude);
+		Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
+		toast.show();
 		
 		
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		intent.putExtra(ADD_SUCCESS, true);
 		intent.putExtra(POINT_ID, id);
+		intent.putExtra(MapJournalMapActivity.LATITUDE, latitude);
+		intent.putExtra(MapJournalMapActivity.LONGITUDE, longitude);
+				
 		startActivity(intent);
     	return 0;
     }
