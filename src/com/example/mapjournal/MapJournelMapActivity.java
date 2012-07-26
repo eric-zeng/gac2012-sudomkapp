@@ -70,6 +70,11 @@ public class MapJournelMapActivity extends MapActivity {
 //        mapOverlays.add(itemizedOverlay);
         
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 5, locationListener);
+		String locationProvider = LocationManager.NETWORK_PROVIDER;
+		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+		double latitude = lastKnownLocation.getLatitude();
+		double longitude = lastKnownLocation.getLongitude();
+		addPoint(latitude, longitude, "Initial Loc", "I'm in somewhere");
     }
 
     @Override
