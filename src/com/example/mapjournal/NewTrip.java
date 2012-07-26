@@ -2,17 +2,12 @@ package com.example.mapjournal;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
-
 public class NewTrip extends Activity {
 	
 	private EditText textBox;
@@ -28,6 +23,13 @@ public class NewTrip extends Activity {
 		if(textBox.getText().toString().length() > 0){
 			Log.i("NewTrip", "String submitted: " + textBox.getText().toString());
 			String tripName = textBox.getText().toString();
+			
+//		Changed by Leo to hook the mapView
+			Intent intent = new Intent (this, MapJournelMapActivity.class);
+	    	startActivity(intent);
+//	    	End Change
+	    	
+	    	
 		}else{ 
 			Log.i("NewTrip", "String is null");
 			final AlertDialog ad = new AlertDialog.Builder(NewTrip.this).create();
@@ -41,7 +43,8 @@ public class NewTrip extends Activity {
 			} );
 			
 			ad.show();
-			
+
+
 		}
 	}
 	
