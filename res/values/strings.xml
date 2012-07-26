@@ -19,6 +19,7 @@
 	<string name="invalid_text_alert">Please enter a valid name</string>
 	<string name="dismiss">Close</string>
 	
+
 <!-- 	Used in addPointActivity, MapJournelMapActivity and MapTestItemizedOverlay -->
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
@@ -26,3 +27,4 @@
     <string name="title_activity_add_point">Check In</string>
 	
 </resources>
+
