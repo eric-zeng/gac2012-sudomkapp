@@ -118,6 +118,21 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   return point;
    }  
    
+   public ArrayList<String> getAllTrips(){
+	   
+	   ArrayList<String> trips = new ArrayList<String>();
+	   String selectQuery = "SELECT DISTINCT " + KEY_TRIPNAME + " as " + KEY_ID + " FROM " + TABLE_POINTS; 
+       SQLiteDatabase db = this.getWritableDatabase();
+       Cursor cursor = db.rawQuery(selectQuery, null);
+
+       if (cursor.moveToFirst()) {
+           do {
+        	   trips.add(cursor.getString(0));               
+           } while (cursor.moveToNext());
+       }
+       return trips;
+   } 
+   
    public ArrayList<Point> getTrip(String tripname){
 	   ArrayList<Point> trip = new ArrayList<Point>();
 	   String selectQuery = "SELECT * FROM " + TABLE_POINTS + " WHERE " + KEY_TRIPNAME + "=" + "'" + tripname + "'";
