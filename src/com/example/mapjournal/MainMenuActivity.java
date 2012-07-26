@@ -24,4 +24,9 @@ public class MainMenuActivity extends Activity {
     	Intent intent = new Intent (MainMenuActivity.this, NewTrip.class);
     	startActivity(intent);
     }
+    
+    public void previousTrips(View vew){
+    	Intent intent = new Intent (MainMenuActivity.this, PreviousTripsActivity.class);
+    	startActivity(intent);
+    }
 }
