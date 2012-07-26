@@ -1,9 +1,7 @@
 package com.example.mapjournal;
 
-import java.util.ArrayList;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.view.Menu;
 import android.view.View;
