@@ -1,8 +1,11 @@
 package com.example.mapjournal;
 
+import java.util.prefs.Preferences;
+
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,10 +17,17 @@ import android.widget.TextView;
 
 public class MainMenuActivity extends ListActivity {
 
+	private String currentTrip;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
+        
+        //Retrieve current trip from preferences 
+        SharedPreferences prefs = getPreferences(0);
+        currentTrip = prefs.getString("current", null);
+
         //setContentView(R.layout.activity_main_menu);
         String[] tripNames = new String[]{"New Trip", "Resume Trip", "Previous Trip"};
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));

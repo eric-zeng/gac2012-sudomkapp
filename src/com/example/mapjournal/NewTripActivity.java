@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 public class NewTripActivity extends Activity {
 	
 	private EditText textBox;
+	private String currentTrip;
 	
 	public void onCreate(Bundle savedInstanceState) {
         
@@ -19,10 +21,20 @@ public class NewTripActivity extends Activity {
         textBox = (EditText) findViewById(R.id.text_box);
     }
 	
+	public void onStop(){
+		super.onStop();
+		if(currentTrip != null){
+			SharedPreferences prefs = getPreferences(0);
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putString("current", currentTrip);
+			editor.commit();
+		}
+	}
+	
 	public void submitName(View view){
 		if(textBox.getText().toString().length() > 0){
 			Log.i("NewTrip", "String submitted: " + textBox.getText().toString());
-			String tripName = textBox.getText().toString();
+			currentTrip = textBox.getText().toString();
 			
 //		Changed by Leo to hook the mapView
 			Intent intent = new Intent (this, MapJournalMapActivity.class);
@@ -30,7 +42,8 @@ public class NewTripActivity extends Activity {
 //	    	End Change
 	    	
 	    	
-		}else{ 
+		}
+		else{ 
 			Log.i("NewTrip", "String is null");
 			final AlertDialog ad = new AlertDialog.Builder(NewTripActivity.this).create();
 			ad.setTitle("Invalid name");

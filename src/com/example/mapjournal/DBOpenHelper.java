@@ -12,6 +12,7 @@ import android.util.Log;
 public class DBOpenHelper extends SQLiteOpenHelper{
 
    private static final int VERSION = 5;  
+   private static int lastID = 1;
    static final String DATABASE_NAME = "MAPS";
    private static final String TAG = "UPDATE_MAPS";
    private static final String TABLE_POINTS = "points";
@@ -53,7 +54,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 			   onCreate(db);
    }
    
-   public void addPoint(Point point){
+   public long addPoint(Point point){
 	   SQLiteDatabase db = this.getWritableDatabase();
 	   ContentValues values = new ContentValues();
 	   values.put(KEY_TITLE, point.getTitle());
@@ -63,8 +64,10 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   values.put(KEY_TIME, point.getTime());
 	   values.put(KEY_NOTE, point.getNote());
 	   
-	   db.insert(TABLE_POINTS, null, values);
+	   long id = db.insert(TABLE_POINTS, null, values);
 	   db.close();
+	   return id;
+	   
    }
    
    public void deletePoint(Point point) {
