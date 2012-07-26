@@ -21,7 +21,7 @@ public class MainMenuActivity extends Activity {
     }
     
     public void createNewTrip(View view){
-    	Intent intent = new Intent (MainMenuActivity.this, NewTrip.class);
+    	Intent intent = new Intent (MainMenuActivity.this, NewTripActivity.class);
     	startActivity(intent);
     }
     
