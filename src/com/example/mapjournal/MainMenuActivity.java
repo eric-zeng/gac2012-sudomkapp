@@ -35,7 +35,18 @@ public class MainMenuActivity extends ListActivity {
     }
     
     public void createNewTrip(View view){
-    	Intent intent = new Intent (MainMenuActivity.this, NewTrip.class);
+    	Intent intent = new Intent (MainMenuActivity.this, NewTripActivity.class);
+    	startActivity(intent);
+    }
+    
+    // Temporary - leads to journal entry
+    public void resumeTrip(View view){
+    	Intent intent = new Intent (MainMenuActivity.this, JournalEntryActivity.class);
+    	startActivity(intent);    	
+    }
+    
+    public void previousTrips(View view){
+    	Intent intent = new Intent (MainMenuActivity.this, PreviousTripsActivity.class);
     	startActivity(intent);
     }
 }

@@ -12,19 +12,15 @@ import com.google.android.maps.OverlayItem;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.support.v4.app.NavUtils;
 
-public class MapJournelMapActivity extends MapActivity {
+public class MapJournalMapActivity extends MapActivity {
 
     public LocationManager locationManager;
     private final static String TAG="MainActivity";
@@ -74,6 +70,11 @@ public class MapJournelMapActivity extends MapActivity {
 //        mapOverlays.add(itemizedOverlay);
         
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 5, locationListener);
+		String locationProvider = LocationManager.NETWORK_PROVIDER;
+		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+		double latitude = lastKnownLocation.getLatitude();
+		double longitude = lastKnownLocation.getLongitude();
+		addPoint(latitude, longitude, "Initial Loc", "I'm in somewhere");
     }
 
     @Override
