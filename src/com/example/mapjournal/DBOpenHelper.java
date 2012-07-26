@@ -48,6 +48,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
  
    @Override  
    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	   //Change this--only for testing purposes
 	   Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
 			   + newVersion + ", which will destroy all old data");
 			   db.execSQL("DROP TABLE IF EXISTS points");
@@ -89,6 +90,17 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 
    		db.update(TABLE_POINTS, values, KEY_ID + " = ?",
    				new String[] { String.valueOf(point.getId()) });
+   }
+   
+   public void updateNote(int id, String note){
+	   Point point = getPoint(id);
+	   point.setNote(note);
+   }
+   
+   public String getNote(int id){
+	   Point point = getPoint(id);
+	   String text = point.getNote();
+	   return text;
    }
    
    public Point getPoint(int id){
