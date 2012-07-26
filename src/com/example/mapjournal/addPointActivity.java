@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class addPointActivity extends Activity {
+    public static final String PREFS_NAME = "PrefsFile";
 	double longitude, latitude;
 	public static final String ADD_SUCCESS = "com.example.mapjournal.addPointActivity.ADD_SUCCESS";
 	public static final String POINT_ID = "com.example.mapjournal.addPointActivity.POINT_ID";
@@ -39,7 +40,7 @@ public class addPointActivity extends Activity {
 
 		
 	    //Retrieve current trip from preferences 
-        SharedPreferences prefs = getPreferences(0);
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
         String currentTrip = prefs.getString("current", null);	
         Log.d("Trip1", currentTrip);
         

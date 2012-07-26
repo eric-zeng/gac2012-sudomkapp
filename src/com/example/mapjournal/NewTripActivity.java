@@ -14,6 +14,7 @@ public class NewTripActivity extends Activity {
 	
 	private EditText textBox;
 	private String currentTrip;
+    public static final String PREFS_NAME = "PrefsFile";
 	
 	public void onCreate(Bundle savedInstanceState) {
         
@@ -30,7 +31,7 @@ public class NewTripActivity extends Activity {
 			Log.d("Trip", currentTrip);
 					
 		if(currentTrip != null){
-			SharedPreferences prefs = getPreferences(0);
+			SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
 			SharedPreferences.Editor editor = prefs.edit();
 			editor.putString("current", currentTrip);
 			editor.commit();
