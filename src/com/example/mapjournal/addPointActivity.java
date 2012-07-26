@@ -3,6 +3,7 @@ package com.example.mapjournal;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -11,7 +12,6 @@ import android.widget.Toast;
 
 public class addPointActivity extends Activity {
 	double longitude, latitude;
-	private String tripName = "testTrip1";// Change it before release!!!!
 	public static final String ADD_SUCCESS = "com.example.mapjournal.addPointActivity.ADD_SUCCESS";
 	public static final String POINT_ID = "com.example.mapjournal.addPointActivity.POINT_ID";
     @Override
@@ -40,9 +40,11 @@ public class addPointActivity extends Activity {
 		Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
 		toast.show();
 		
-		
+	    //Retrieve current trip from preferences 
+        SharedPreferences prefs = getPreferences(0);
+        String currentTrip = prefs.getString("current", null);		
 		DBOpenHelper db = new DBOpenHelper(this);
-		long id = db.addPoint(new Point(name, tripName, (int)(latitude*1E6), (int)(longitude*1E6), 123456, note));
+		long id = db.addPoint(new Point(name, currentTrip, (int)(latitude*1E6), (int)(longitude*1E6), 123456, note));
 		
 		
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
