@@ -7,6 +7,7 @@ package com.example.mapjournal;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 public class JournalEntryActivity extends Activity {
@@ -24,7 +25,7 @@ public class JournalEntryActivity extends Activity {
 		// Retrieve point from map
 		Intent intent = getIntent();
 		String ID = "";
-		pointID = intent.getLongExtra(ID, pointID);
+		pointID = intent.getLongExtra(MapJournalMapActivity.ID, pointID);
 		
 		// Retrieve current text of point from database
 		db = new DBOpenHelper(this);
@@ -37,7 +38,7 @@ public class JournalEntryActivity extends Activity {
 	}
 	
 	// Adds changes to text to the database. 
-	public void submitEdit(){
+	public void submitEdit(View view){
 		note = editor.getText().toString();
 		db.updateNote(pointID, note);
 		gotoMap();
