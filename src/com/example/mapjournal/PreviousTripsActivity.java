@@ -1,14 +1,11 @@
 package com.example.mapjournal;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
-=======
 
 import android.os.Bundle;
->>>>>>> 968537c4d7da62c30b9f955a793f5b49c085c093
 import android.app.ListActivity;
 import android.view.Menu;
 import android.view.View;
