@@ -25,7 +25,13 @@ public class MainMenuActivity extends Activity {
     	startActivity(intent);
     }
     
-    public void previousTrips(View vew){
+    // Temporary - leads to journal entry
+    public void resumeTrip(View view){
+    	Intent intent = new Intent (MainMenuActivity.this, JournalEntryActivity.class);
+    	startActivity(intent);    	
+    }
+    
+    public void previousTrips(View view){
     	Intent intent = new Intent (MainMenuActivity.this, PreviousTripsActivity.class);
     	startActivity(intent);
     }

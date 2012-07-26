@@ -25,7 +25,7 @@ public class NewTripActivity extends Activity {
 			String tripName = textBox.getText().toString();
 			
 //		Changed by Leo to hook the mapView
-			Intent intent = new Intent (this, MapJournelMapActivity.class);
+			Intent intent = new Intent (this, MapJournalMapActivity.class);
 	    	startActivity(intent);
 //	    	End Change
 	    	

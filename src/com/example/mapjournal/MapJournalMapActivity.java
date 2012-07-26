@@ -20,7 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MapJournelMapActivity extends MapActivity {
+public class MapJournalMapActivity extends MapActivity {
 
     public LocationManager locationManager;
     private final static String TAG="MainActivity";

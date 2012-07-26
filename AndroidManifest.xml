@@ -31,16 +31,21 @@
 
         
         <activity
-            android:name=".MapJournelMapActivity"
+            android:name=".MapJournalMapActivity"
             android:label="@string/title_activity_main" >
             
         </activity>
-        
         
         <activity
             android:name="addPointActivity"
             android:label="@string/title_activity_add_point" >
         </activity>
+        
+        
+        
+        <activity android:name=".JournalEntryActivity"> </activity>
+        <fragment android:name=".NotesTabFragment"></fragment>
+        <fragment android:name=".PicsTabFragment"></fragment>
         
     </application>
 
