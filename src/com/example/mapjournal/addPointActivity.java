@@ -38,7 +38,7 @@ public class addPointActivity extends Activity {
 		Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
 		toast.show();
 		
-		Intent intent = new Intent(this, MapJournelMapActivity.class);
+		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		startActivity(intent);
     	return 0;
     }
