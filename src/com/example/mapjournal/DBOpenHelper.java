@@ -92,18 +92,18 @@ public class DBOpenHelper extends SQLiteOpenHelper{
    				new String[] { String.valueOf(point.getId()) });
    }
    
-   public void updateNote(int id, String note){
+   public void updateNote(long id, String note){
 	   Point point = getPoint(id);
 	   point.setNote(note);
    }
    
-   public String getNote(int id){
+   public String getNote(long id){
 	   Point point = getPoint(id);
 	   String text = point.getNote();
 	   return text;
    }
    
-   public Point getPoint(int id){
+   public Point getPoint(long id){
 	   SQLiteDatabase db = this.getReadableDatabase();
 	   Cursor cursor = db.query(TABLE_POINTS, new String[] {KEY_ID,
            KEY_TITLE, KEY_TRIPNAME, KEY_LATITUDE, KEY_LONGITUDE, KEY_TIME, KEY_NOTE}, KEY_ID + "=?",
