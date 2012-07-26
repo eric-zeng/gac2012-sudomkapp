@@ -19,6 +19,9 @@
 	<string name="invalid_text_alert">Please enter a valid name</string>
 	<string name="dismiss">Close</string>
 	
+<!--  Text editor strings -->
+
+	<string name="text_edit_title">Edit your journal entry</string>
 
 <!-- 	Used in addPointActivity, MapJournelMapActivity and MapTestItemizedOverlay -->
     <string name="hello_world">Hello world!</string>
