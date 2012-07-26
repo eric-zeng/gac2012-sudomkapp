@@ -1,5 +1,6 @@
 package com.example.mapjournal;
-
+//Created by Eric
+//Changed by Leo
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

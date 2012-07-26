@@ -1,5 +1,5 @@
 package com.example.mapjournal;
-
+//Created by Leo
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

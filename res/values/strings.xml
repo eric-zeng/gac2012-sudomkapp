@@ -23,7 +23,7 @@
 <!-- 	Used in addPointActivity, MapJournelMapActivity and MapTestItemizedOverlay -->
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_get_location">Find me!</string>
+    <string name="title_get_location">Check In!</string>
     <string name="title_activity_add_point">Check In</string>
 	
 </resources>
