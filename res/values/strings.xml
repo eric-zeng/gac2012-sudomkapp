@@ -22,6 +22,7 @@
 <!--  Text editor strings -->
 
 	<string name="text_edit_title">Edit your journal entry</string>
+	<string name="cancel">Cancel</string>
 
 <!-- 	Used in addPointActivity, MapJournelMapActivity and MapTestItemizedOverlay -->
     <string name="hello_world">Hello world!</string>
