@@ -42,18 +42,15 @@ public class JournalEntryActivity extends Activity {
 			this.fragment = fragment;			
 		}
 		
-		@Override
 		public void onTabReselected(Tab tab, FragmentTransaction ft) {
 			// TODO Auto-generated method stub			
 		}
 
-		@Override
 		public void onTabSelected(Tab tab, FragmentTransaction ft) {
 			// TODO Auto-generated method stub
 			ft.add(R.id.fragment_container, fragment, null);
 		}
 
-		@Override
 		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 			// TODO Auto-generated method stub			
 		}

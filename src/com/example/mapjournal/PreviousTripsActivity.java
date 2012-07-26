@@ -1,10 +1,9 @@
 package com.example.mapjournal;
 
-import java.util.ArrayList;
 
-import android.os.Bundle;
 import android.app.Activity;
-
+import android.content.Intent;
+import android.widget.TextView;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.view.Menu;
@@ -22,6 +21,14 @@ public class PreviousTripsActivity extends ListActivity
         //setContentView(R.layout.activity_previous_trips);
         String[] tripNames = new String[]{"Trip 1", "Trip 2", "Trip 3", "View All"};
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));
+        
+//        TextView txtProduct = (TextView) findViewById(R.id.product_label);
+//        
+//        Intent i = getIntent();
+//        // getting attached intent data
+//        String product = i.getStringExtra("product");
+//        // displaying selected product name
+//        txtProduct.setText(product);
     }
 
     @Override
