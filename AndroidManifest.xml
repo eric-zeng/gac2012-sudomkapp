@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="NewTrip"></activity>
 
         <activity android:name=".NewTripActivity"></activity>
         <activity android:name="PreviousTripsActivity"></activity>
@@ -36,11 +37,11 @@
             
         </activity>
         
+        
         <activity
-            android:name="addPointActivity"
+            android:name=".addPointActivity"
             android:label="@string/title_activity_add_point" >
         </activity>
-        
         
         
         <activity android:name=".JournalEntryActivity"> </activity>
