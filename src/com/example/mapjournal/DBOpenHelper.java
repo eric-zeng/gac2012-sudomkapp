@@ -121,7 +121,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
    public ArrayList<String> getAllTrips(){
 	   
 	   ArrayList<String> trips = new ArrayList<String>();
-	   String selectQuery = "SELECT DISTINCT " + KEY_TRIPNAME + " as " + KEY_ID + " FROM " + TABLE_POINTS + " ORDER BY " + KEY_TIME  + " DESC"; 
+	   String selectQuery = "SELECT DISTINCT " + KEY_TRIPNAME + " as " + KEY_ID + " FROM " + TABLE_POINTS + " ORDER BY " + KEY_TIME  + " ASC"; 
        SQLiteDatabase db = this.getWritableDatabase();
        Cursor cursor = db.rawQuery(selectQuery, null);
 

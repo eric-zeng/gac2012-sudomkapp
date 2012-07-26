@@ -22,8 +22,6 @@ public class PreviousTripsActivity extends ListActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_previous_trips);
-        db.addPoint(new Point("hi", "cali", 5, 6, 6, "fun"));
-        db.addPoint(new Point("new", "sanfran", 5, 6, 6, "dogs"));
         ArrayList<String> tripNames = new ArrayList<String>();
         tripNames = db.getAllTrips();
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));
