@@ -71,10 +71,17 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   
    }
    
-   public void deletePoint(Point point) {
+   public void deleteTrip(String tripName){
+	   SQLiteDatabase db = this.getWritableDatabase();
+	    db.delete(TABLE_POINTS, KEY_TRIPNAME + " = ?",
+	            new String[] { tripName });
+	    db.close();
+   }
+   
+   public void deletePoint(Long id) {
 	    SQLiteDatabase db = this.getWritableDatabase();
 	    db.delete(TABLE_POINTS, KEY_ID + " = ?",
-	            new String[] { String.valueOf(point.getId()) });
+	            new String[] { String.valueOf(id) });
 	    db.close();
 	}
    
