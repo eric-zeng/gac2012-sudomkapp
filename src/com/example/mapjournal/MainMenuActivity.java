@@ -3,29 +3,34 @@ package com.example.mapjournal;
 import java.util.ArrayList;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class MainMenuActivity extends Activity {
+public class MainMenuActivity extends ListActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        DBOpenHelper db = new DBOpenHelper(this);
-        Log.d("Insert: ", "Inserting ..");
-        db.addPoint(new Point("Ice Cream", "SanFran", 122, 67, 1230, "It was so fun!" ));
-        db.addPoint(new Point("starbucks", "SanFran", 124, 45, 3133, "yum"));
-        Log.d("Reading: ", "Reading all points");
-        ArrayList<Point> points = db.getTrip("SanFran");
-        for (Point p : points){
-        	String log = "Id: " + p.getId() + "Title: " + p.getTitle() + " Lat: " + p.getLatitude();
-        	Log.d("Name: ", log);
-        }
+        //setContentView(R.layout.activity_main_menu);
+        String[] tripNames = new String[]{"New Trip", "Resume Trip", "Previous Trip"};
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));
     }
+    
+    @Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Object o = this.getListAdapter().getItem(position);
+		String keyword = o.toString();
+		Toast.makeText(this, "You Have Selected: " + keyword, Toast.LENGTH_LONG).show();
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,7 +39,18 @@ public class MainMenuActivity extends Activity {
     }
     
     public void createNewTrip(View view){
-    	Intent intent = new Intent (MainMenuActivity.this, NewTrip.class);
+    	Intent intent = new Intent (MainMenuActivity.this, NewTripActivity.class);
+    	startActivity(intent);
+    }
+    
+    // Temporary - leads to journal entry
+    public void resumeTrip(View view){
+    	Intent intent = new Intent (MainMenuActivity.this, JournalEntryActivity.class);
+    	startActivity(intent);    	
+    }
+    
+    public void previousTrips(View view){
+    	Intent intent = new Intent (MainMenuActivity.this, PreviousTripsActivity.class);
     	startActivity(intent);
     }
 }

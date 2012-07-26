@@ -4,7 +4,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="16" />
     
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -15,6 +15,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="com.google.android.maps" />
         <activity
             android:name=".MainMenuActivity"
             android:label="@string/title_activity_main_menu" >
@@ -25,9 +26,13 @@
             </intent-filter>
         </activity>
         <activity android:name="NewTrip"></activity>
+
+        <activity android:name=".NewTripActivity"></activity>
+        <activity android:name="PreviousTripsActivity"></activity>
+
         
         <activity
-            android:name=".MapJournelMapActivity"
+            android:name=".MapJournalMapActivity"
             android:label="@string/title_activity_main" >
             
         </activity>
@@ -37,6 +42,11 @@
             android:name=".addPointActivity"
             android:label="@string/title_activity_add_point" >
         </activity>
+        
+        
+        <activity android:name=".JournalEntryActivity"> </activity>
+        <fragment android:name=".NotesTabFragment"></fragment>
+        <fragment android:name=".PicsTabFragment"></fragment>
         
     </application>
 

@@ -17,8 +17,13 @@ public class addPointActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_point);
         Intent intent = getIntent();
+<<<<<<< HEAD
         longitude = intent.getDoubleExtra(MapJournelMapActivity.LONGITUDE, Integer.MAX_VALUE);
         latitude = intent.getDoubleExtra(MapJournelMapActivity.LATITUDE, Integer.MAX_VALUE);
+=======
+        longitude = intent.getDoubleExtra(MapJournalMapActivity.LONGITUDE, Integer.MAX_VALUE);
+        latitude = intent.getDoubleExtra(MapJournalMapActivity.LATITUDE, Integer.MAX_VALUE);
+>>>>>>> 968537c4d7da62c30b9f955a793f5b49c085c093
         
     }
 
@@ -38,6 +43,11 @@ public class addPointActivity extends Activity {
 		Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
 		toast.show();
 		
+<<<<<<< HEAD
+=======
+		Intent intent = new Intent(this, MapJournalMapActivity.class);
+		startActivity(intent);
+>>>>>>> 968537c4d7da62c30b9f955a793f5b49c085c093
     	return 0;
     }
     
