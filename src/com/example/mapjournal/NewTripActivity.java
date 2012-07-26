@@ -14,6 +14,7 @@ public class NewTripActivity extends Activity {
 	
 	private EditText textBox;
 	private String currentTrip;
+    public static final String PREFS_NAME = "PrefsFile";
 	
 	public void onCreate(Bundle savedInstanceState) {
         
@@ -22,20 +23,19 @@ public class NewTripActivity extends Activity {
         textBox = (EditText) findViewById(R.id.text_box);
     }
 	
-	public void onStop(){
-		super.onStop();
-		if(currentTrip != null){
-			SharedPreferences prefs = getPreferences(0);
-			SharedPreferences.Editor editor = prefs.edit();
-			editor.putString("current", currentTrip);
-			editor.commit();
-		}
-	}
 	
 	public void submitName(View view){
 		if(textBox.getText().toString().length() > 0){
 			Log.i("NewTrip", "String submitted: " + textBox.getText().toString());
 			currentTrip = textBox.getText().toString();
+			Log.d("Trip", currentTrip);
+					
+		if(currentTrip != null){
+			SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putString("current", currentTrip);
+			editor.commit();
+		}
 			
 //		Changed by Leo to hook the mapView
 			Intent intent = new Intent (this, MapJournalMapActivity.class);

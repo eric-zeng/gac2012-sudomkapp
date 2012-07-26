@@ -38,11 +38,6 @@ public class MapTestItemizedOverlay extends  ItemizedOverlay {
 	@Override
 	protected boolean onTap(int index)
 	{
-//		OverlayItem item=mOverlays.get(index);
-//		AlertDialog.Builder dialog=new AlertDialog.Builder(mContext);
-//		dialog.setTitle(item.getTitle());
-//		dialog.setMessage(item.getSnippet());
-//		dialog.show();
 		Toast.makeText(mContext, mOverlays.get(index).getTitle().toString()
 					+", Latitude: "+mOverlays.get(index).getPoint().getLatitudeE6(),
 						Toast.LENGTH_SHORT).show();

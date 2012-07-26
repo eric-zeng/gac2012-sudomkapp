@@ -21,6 +21,7 @@ import android.widget.TextView;
 public class MainMenuActivity extends ListActivity {
 
 	private String currentTrip;
+    public static final String PREFS_NAME = "PrefsFile";
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) 
@@ -28,11 +29,11 @@ public class MainMenuActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         
         //Retrieve current trip from preferences 
-        SharedPreferences prefs = getPreferences(0);
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
         currentTrip = prefs.getString("current", null);
 
         //setContentView(R.layout.activity_main_menu);
-        String[] tripNames = new String[]{"New Trip", "Resume Trip", "Previous Trip"};
+        String[] tripNames = new String[]{"New Trip", "Resume Trip", "Previous Trips"};
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));
         ListView lv = getListView();
         
