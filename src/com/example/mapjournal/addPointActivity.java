@@ -46,7 +46,7 @@ public class addPointActivity extends Activity {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
         String currentTrip = prefs.getString("current", null);
 		DBOpenHelper db = new DBOpenHelper(this);
-		long id = db.addPoint(new Point(name, currentTrip, (int)(latitude*1E6), (int)(longitude*1E6), Calendar.getInstance().getTimeInMillis(), note));
+		long id = db.addPoint(new Point(name, currentTrip, (int)(latitude*1E6), (int)(longitude*1E6), /**Calendar.getInstance().getTimeInMillis()*/ 1234, note));
 				
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		intent.putExtra(POINT_ID, id);
