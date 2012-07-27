@@ -24,8 +24,6 @@ import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.widget.Toast;
-
 /**
  * The activity to let user interact with the mapview, initiate addPointActivity and provide location information
  * @author Leo Dihong Gao
@@ -35,7 +33,6 @@ public class MapJournalMapActivity extends MapActivity
 {	
 	public final static String ID = "com.example.maptest.MainActivity.ID"; //Point ID identifier
     public LocationManager locationManager;
-    private final static String TAG="MainActivity";//Debug propose 
     public LocationListener locationListener;
     public MapView mapView;
     public final static String LONGITUDE = "com.example.maptest.MainActivity.LONGITUDE";//longitude label in outbound intent
@@ -107,7 +104,7 @@ public class MapJournalMapActivity extends MapActivity
 	}
 	
 	/**
-	 * When the check in button is hitten, get the current location and pass that info in the intent to start addPointActivity
+	 * When the check in button is hit, get the current location and pass that info in the intent to start addPointActivity
 	 * @param menu
 	 * @return 0 on success
 	 */
@@ -117,19 +114,11 @@ public class MapJournalMapActivity extends MapActivity
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
 		latitude = lastKnownLocation.getLatitude();
 		longitude = lastKnownLocation.getLongitude();
-		
-		Context context = getApplicationContext();
-		CharSequence text = "Latitude: "+Double.toString(latitude)
-							+ "   Longitude: "+Double.toString(longitude);
-		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-		toast.show();
-		
 		addPoint(latitude, longitude, "Hello map", "I'm in somewhere");
 		
 		Intent intent = new Intent(this, addPointActivity.class);
 		intent.putExtra(LATITUDE, latitude);
-		intent.putExtra(LONGITUDE, longitude);
-		
+		intent.putExtra(LONGITUDE, longitude);		
 		startActivity(intent);
 		return 0;
 	}
@@ -156,6 +145,7 @@ public class MapJournalMapActivity extends MapActivity
 	 * @author Leo Dihong Gao
 	 *
 	 */
+	@SuppressWarnings("rawtypes")
 	public class MapTestItemizedOverlay extends  ItemizedOverlay {
 
 		private ArrayList <OverlayItem> mOverlays = new ArrayList<OverlayItem>();
