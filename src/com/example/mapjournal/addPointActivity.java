@@ -1,5 +1,7 @@
 package com.example.mapjournal;
 //Created by Leo
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -45,7 +47,7 @@ public class addPointActivity extends Activity {
         Log.d("Trip1", currentTrip);
         
 		DBOpenHelper db = new DBOpenHelper(this);
-		long id = db.addPoint(new Point(name, currentTrip, (int)(latitude*1E6), (int)(longitude*1E6), 123456, note));
+		long id = db.addPoint(new Point(name, currentTrip, (int)(latitude*1E6), (int)(longitude*1E6), Calendar.getInstance().getTimeInMillis(), note));
 		Log.d("ID: ", Long.toString(id));
 		CharSequence text = "ID: " + Long.toString(id) + "   name: "+name+"   note: "+ note + "   Latitude: "+Double.toString(latitude)
 				+ "   Longitude: "+Double.toString(longitude);

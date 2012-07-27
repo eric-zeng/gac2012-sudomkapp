@@ -129,7 +129,7 @@ public class MapJournalMapActivity extends MapActivity {
 		{
 			addPoint(tripPoint.get(iter).getLatitude(), 
 						tripPoint.get(iter).getLongitude(),
-						Integer.toString(tripPoint.get(iter).getId()),
+						Long.toString(tripPoint.get(iter).getId()),
 						"");
 		}
 		return 0;

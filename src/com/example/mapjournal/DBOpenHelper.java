@@ -14,21 +14,20 @@ import android.util.Log;
  * @author dinalamdany
  *
  */
-
 public class DBOpenHelper extends SQLiteOpenHelper{
 
-   private static final int VERSION = 6;  
-   static final String DATABASE_NAME = "MAPS";
-   private static final String TAG = "UPDATE_MAPS";
-   private static final String TABLE_POINTS = "points";
+	private static final int VERSION = 6;  
+	static final String DATABASE_NAME = "MAPS";
+	private static final String TAG = "UPDATE_MAPS";
+	private static final String TABLE_POINTS = "points";
    
-   private static final String KEY_ID = "id";
-   private static final String KEY_TITLE = "title";
-   private static final String KEY_TRIPNAME = "tripname";
-   private static final String KEY_LATITUDE = "latitude";
-   private static final String KEY_LONGITUDE = "longitude";
-   private static final String KEY_TIME = "time";
-   private static final String KEY_NOTE = "note";
+	private static final String KEY_ID = "id";
+	private static final String KEY_TITLE = "title";
+	private static final String KEY_TRIPNAME = "tripname";
+	private static final String KEY_LATITUDE = "latitude";
+	private static final String KEY_LONGITUDE = "longitude";
+	private static final String KEY_TIME = "time";
+	private static final String KEY_NOTE = "note";
 
    
    /**
@@ -169,7 +168,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
    public ArrayList<String> getAllTrips(){
 	   
 	   ArrayList<String> trips = new ArrayList<String>();
-	   String selectQuery = "SELECT DISTINCT " + KEY_TRIPNAME + " as " + KEY_ID + " FROM " + TABLE_POINTS + " ORDER BY " + KEY_TIME  + " ASC"; 
+	   String selectQuery = "SELECT DISTINCT " + KEY_TRIPNAME + " as " + KEY_ID + " FROM " + TABLE_POINTS + " ORDER BY " + KEY_TIME  + " DESC"; 
        SQLiteDatabase db = this.getReadableDatabase();
        Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -226,12 +225,12 @@ public class DBOpenHelper extends SQLiteOpenHelper{
        if (cursor.moveToFirst()) {
            do {
                Point point = new Point();
-               point.setID(Integer.parseInt(cursor.getString(0)));
+               point.setID((Long.parseLong(cursor.getString(0))));
                point.setTitle(cursor.getString(1));
                point.setTripname(cursor.getString(2));
                point.setLatitude(Integer.parseInt(cursor.getString(3)));
                point.setLongitude(Integer.parseInt(cursor.getString(4)));
-               point.setTime(Integer.parseInt(cursor.getString(5)));
+               point.setTime(Long.parseLong(cursor.getString(5)));
                point.setNote(cursor.getString(6));
                
                allPoints.add(point);
