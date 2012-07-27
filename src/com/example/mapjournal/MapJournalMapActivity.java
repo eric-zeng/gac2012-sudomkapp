@@ -42,6 +42,9 @@ public class MapJournalMapActivity extends MapActivity
     
     
     @Override
+    /**
+     * load the activity, get the current location and add all points (if any) onto the map
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapview);
@@ -92,6 +95,9 @@ public class MapJournalMapActivity extends MapActivity
     }
 
     @Override
+    /**
+     * load the action bar
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_map_menu, menu);
         return true;
@@ -156,11 +162,18 @@ public class MapJournalMapActivity extends MapActivity
 		}
 
 		@Override
+		/**
+		 * get the required overlay item
+		 */
 		protected OverlayItem createItem(int arg0) {
 			// TODO Auto-generated method stub
 			return mOverlays.get(arg0);
 		}
 		
+		/**
+		 * add a new overlay onto the map
+		 * @param overlay the overlay to be added onto the map
+		 */
 		public void addOverlay(OverlayItem overlay)
 		{
 			mOverlays.add(overlay);
@@ -168,6 +181,9 @@ public class MapJournalMapActivity extends MapActivity
 		}
 		
 		@Override
+		/**
+		 * get the number of the layers
+		 */
 		public int size() {
 			// TODO Auto-generated method stub
 			return mOverlays.size();

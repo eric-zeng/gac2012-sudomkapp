@@ -1,6 +1,4 @@
 package com.example.mapjournal;
-import java.util.Calendar;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +17,11 @@ public class addPointActivity extends Activity {
 	double longitude, latitude;
 	public static final String POINT_ID = "com.example.mapjournal.addPointActivity.POINT_ID";
 	
+	
     @Override
+    /**
+     * Load the activity and get the longitude and latitude from the instance
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_point);
@@ -29,6 +31,9 @@ public class addPointActivity extends Activity {
     }
 
     @Override
+    /**
+     * load the action bar
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_add_point, menu);
         return true;
