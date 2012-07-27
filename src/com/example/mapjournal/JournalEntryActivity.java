@@ -7,6 +7,7 @@ package com.example.mapjournal;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -24,7 +25,6 @@ public class JournalEntryActivity extends Activity {
 		
 		// Retrieve point from map
 		Intent intent = getIntent();
-		String ID = "";
 		pointID = intent.getLongExtra(MapJournalMapActivity.ID, pointID);
 		
 		// Retrieve current text of point from database
@@ -41,11 +41,20 @@ public class JournalEntryActivity extends Activity {
 	public void submitEdit(View view){
 		note = editor.getText().toString();
 		db.updateNote(pointID, note);
+		Log.i("Editor", "Note edit submitted to database: " + note);
+		
+		gotoMap();
+	}
+	
+	public void deletePoint(){
+		db.deletePoint(pointID);
+		Log.i("Editor", "Point deleted");
 		gotoMap();
 	}
 	
 	// Returns to the map activity.
 	public void gotoMap(){
+		Log.i("Editor", "Going to map activity");
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		startActivity(intent);		
 	}	

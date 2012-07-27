@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DBOpenHelper extends SQLiteOpenHelper{
 
-   private static final int VERSION = 5;  
+   private static final int VERSION = 6;  
    private static int lastID = 1;
    static final String DATABASE_NAME = "MAPS";
    private static final String TAG = "UPDATE_MAPS";
