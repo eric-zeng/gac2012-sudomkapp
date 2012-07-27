@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class JournalEntryActivity extends Activity {
 	
@@ -30,10 +31,22 @@ public class JournalEntryActivity extends Activity {
 		// Retrieve current text of point from database
 		db = new DBOpenHelper(this);
 		note = db.getNote(pointID);
+		String title = db.getPoint(pointID).getTitle();
 		
-		// Put current text into text box
+		// Get title/notes of point, put into text views
+		TextView noteTitle = (TextView) findViewById(R.id.note_title);
+		noteTitle.setText(title);
+		
+		TextView noteData = (TextView) findViewById(R.id.notes);
+		noteData.setText("Notes: " + note);
+		
+		// Put current text into editor text box
 		editor = (EditText) findViewById(R.id.text_editor);
 		editor.setText(note);
+		
+		
+		
+		
 		
 	}
 	
@@ -43,17 +56,17 @@ public class JournalEntryActivity extends Activity {
 		db.updateNote(pointID, note);
 		Log.i("Editor", "Note edit submitted to database: " + note);
 		
-		gotoMap();
+		gotoMap(view);
 	}
 	
-	public void deletePoint(){
+	public void deletePoint(View view){
 		db.deletePoint(pointID);
 		Log.i("Editor", "Point deleted");
-		gotoMap();
+		gotoMap(view);
 	}
 	
 	// Returns to the map activity.
-	public void gotoMap(){
+	public void gotoMap(View view){
 		Log.i("Editor", "Going to map activity");
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		startActivity(intent);		
