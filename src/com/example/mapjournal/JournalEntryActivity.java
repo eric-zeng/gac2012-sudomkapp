@@ -19,8 +19,11 @@ public class JournalEntryActivity extends Activity {
 	private String note;
 	private DBOpenHelper db;
 	
-	// Gets text associate with a point and puts it in the text editor.
-	public void onCreate(Bundle savedInstanceState){
+	/**
+	 * Gets text associated with a point and puts it in the text editor.
+	 */
+		public void onCreate(Bundle savedInstanceState){
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_journal_entry);
 		
@@ -43,11 +46,7 @@ public class JournalEntryActivity extends Activity {
 		// Put current text into editor text box
 		editor = (EditText) findViewById(R.id.text_editor);
 		editor.setText(note);
-		
-		
-		
-		
-		
+					
 	}
 	
 	// Adds changes to text to the database. 

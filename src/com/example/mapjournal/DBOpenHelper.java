@@ -9,10 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Class to interact with SQLite database to store points that make up trips
+ * @author dinalamdany
+ *
+ */
+
 public class DBOpenHelper extends SQLiteOpenHelper{
 
    private static final int VERSION = 6;  
-   private static int lastID = 1;
    static final String DATABASE_NAME = "MAPS";
    private static final String TAG = "UPDATE_MAPS";
    private static final String TABLE_POINTS = "points";
@@ -26,6 +31,9 @@ public class DBOpenHelper extends SQLiteOpenHelper{
    private static final String KEY_NOTE = "note";
 
    
+   /**
+    * Create database to store points on map
+    */
    private static final String CREATE_POINTS_TABLE =
 		   " create table points" +
 		   " (id integer primary key autoincrement," +
@@ -36,16 +44,27 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 		   " time integer not null," +
 		   " note text);";
 
-	 
+   /**
+    * Instantiate class, which creates actual database if not created
+    * Note: db not created until getWriteableDatabase or getReadableDatabase is called	
+    * @param context Application in which to create db
+    */
    public DBOpenHelper(Context context) {  
        super(context, DATABASE_NAME, null, VERSION);  
    }  
    
+   /**
+    * Create points table by executing SQL query
+    * @param db the database in which to create the table
+    */
    @Override  
    public void onCreate(SQLiteDatabase db) {  
        db.execSQL(CREATE_POINTS_TABLE);
    }
  
+   /**
+    * Method called when database must be updated to latest version
+    */
    @Override  
    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	   //Change this--only for testing purposes
@@ -55,6 +74,11 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 			   onCreate(db);
    }
    
+   /**
+    * Adds point to database
+    * @param point to add
+    * @return ID of point in points table
+    */
    public long addPoint(Point point){
 	   SQLiteDatabase db = this.getWritableDatabase();
 	   ContentValues values = new ContentValues();
@@ -71,6 +95,10 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   
    }
    
+   /**
+    * Deletes trip from db
+    * @param tripName trip to delete
+    */
    public void deleteTrip(String tripName){
 	   SQLiteDatabase db = this.getWritableDatabase();
 	    db.delete(TABLE_POINTS, KEY_TRIPNAME + " = ?",
@@ -78,6 +106,10 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	    db.close();
    }
    
+   /**
+    * Deletes trip from db
+    * @param id id of trip
+    */
    public void deletePoint(Long id) {
 	    SQLiteDatabase db = this.getWritableDatabase();
 	    db.delete(TABLE_POINTS, KEY_ID + " = ?",
@@ -85,22 +117,11 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	    db.close();
 	}
    
-   public void updatePoint(Point point) {
-	   SQLiteDatabase db = this.getWritableDatabase();
-	   ContentValues values = new ContentValues();
-	   values.put(KEY_TITLE, point.getTitle());
-   		values.put(KEY_TRIPNAME, point.getTripname());
-   		values.put(KEY_LATITUDE, point.getLatitude());
-   		values.put(KEY_LONGITUDE, point.getLongitude());
-   		values.put(KEY_TIME, point.getTime());
-   		values.put(KEY_NOTE, point.getNote());
-
-   		db.update(TABLE_POINTS, values, KEY_ID + " = ?",
-   				new String[] { String.valueOf(point.getId()) });
-   		
-   		db.close();
-   }
-   
+   /**
+    * Updates note for a specific point in db
+    * @param Id Id of point
+    * @param note Text of note
+    */
    public void updateNote(long Id, String note){
 	   SQLiteDatabase db = this.getWritableDatabase();
 	   ContentValues values = new ContentValues();
@@ -110,13 +131,22 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   db.close();
    }
 
-   
+   /**
+    * Retrieves text of note of specified point
+    * @param id Id of point
+    * @return text of note
+    */
    public String getNote(long id){
 	   Point point = getPoint(id);
 	   String text = point.getNote();
 	   return text;
    }
    
+   /**
+    * Retrieves point from db 
+    * @param id Id of point
+    * @return point object
+    */
    public Point getPoint(long id){
 	   SQLiteDatabase db = this.getReadableDatabase();
 	   Cursor cursor = db.query(TABLE_POINTS, new String[] {KEY_ID,
@@ -132,6 +162,10 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   return point;
    }  
    
+   /**
+    * Retrieves names of all trips in db
+    * @return arraylist of all trips
+    */
    public ArrayList<String> getAllTrips(){
 	   
 	   ArrayList<String> trips = new ArrayList<String>();
@@ -148,6 +182,11 @@ public class DBOpenHelper extends SQLiteOpenHelper{
        return trips;
    } 
    
+   /**
+    * Retrieves all points in a specified trip
+    * @param tripname Trip to search for
+    * @return Arraylist of points in trip
+    */
    public ArrayList<Point> getTrip(String tripname){
 	   ArrayList<Point> trip = new ArrayList<Point>();
 	   String selectQuery = "SELECT * FROM " + TABLE_POINTS + " WHERE " + KEY_TRIPNAME + "=" + "'" + tripname + "'";
@@ -173,6 +212,10 @@ public class DBOpenHelper extends SQLiteOpenHelper{
        return trip;
    } 
    
+   /**
+    * Retrieves all points visited in history
+    * @return Arraylist of all points visited
+    */
    public ArrayList<Point> getAllPoints() {
        ArrayList<Point> allPoints = new ArrayList<Point>();
        String selectQuery = "SELECT  * FROM " + TABLE_POINTS;

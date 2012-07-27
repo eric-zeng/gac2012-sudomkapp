@@ -84,8 +84,7 @@ public class MapJournalMapActivity extends MapActivity
 		// add all trip points, and update location		
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
         String currentTrip = prefs.getString("current", null);	        
-        if(null != currentTrip)//laod all points in the trip user selected
-        {
+        if(null != currentTrip){
         	DBOpenHelper db = new DBOpenHelper(this);
         	addAllPoints(db.getTrip(currentTrip));
         }
@@ -172,11 +171,13 @@ public class MapJournalMapActivity extends MapActivity
 			// TODO Auto-generated method stub
 			return mOverlays.get(arg0);
 		}
+		
 		public void addOverlay(OverlayItem overlay)
 		{
 			mOverlays.add(overlay);
 			populate();
 		}
+		
 		@Override
 		public int size() {
 			// TODO Auto-generated method stub
@@ -197,11 +198,11 @@ public class MapJournalMapActivity extends MapActivity
 	}
 	/**
 	 * add a single point onto the MapOverlay
-	 * @param latitude
-	 * @param longitude
-	 * @param title
-	 * @param snippet
-	 * @return
+	 * @param latitude the latitude of the point
+	 * @param longitude the longitude of the point
+	 * @param title the point ID
+	 * @param snippet It's not being used. Put an empty string here (not null!) 
+	 * @return 0 on success
 	 */
 	private int addPoint(double latitude, double longitude, String title, String snippet)
 	{
