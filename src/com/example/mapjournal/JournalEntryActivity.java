@@ -43,17 +43,17 @@ public class JournalEntryActivity extends Activity {
 		db.updateNote(pointID, note);
 		Log.i("Editor", "Note edit submitted to database: " + note);
 		
-		gotoMap();
+		gotoMap(view);
 	}
 	
-	public void deletePoint(){
+	public void deletePoint(View view){
 		db.deletePoint(pointID);
 		Log.i("Editor", "Point deleted");
-		gotoMap();
+		gotoMap(view);
 	}
 	
 	// Returns to the map activity.
-	public void gotoMap(){
+	public void gotoMap(View view){
 		Log.i("Editor", "Going to map activity");
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		startActivity(intent);		
