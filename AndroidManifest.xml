@@ -18,7 +18,7 @@
         <uses-library android:name="com.google.android.maps" />
         <activity
             android:name=".MainMenuActivity"
-            android:label="@string/title_activity_main_menu" >
+            android:label="@string/main_menu_menu_bar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

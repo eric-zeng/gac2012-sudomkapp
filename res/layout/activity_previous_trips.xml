@@ -1,45 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:title="@string/previous_menu_bar" >
 
-    <Button
-        android:id="@+id/trip_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:onClick="previousTrip3"
-        android:text="Previous Trip 3" />
-
-    <Button
-        android:id="@+id/trip_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/trip_3"
-        android:layout_alignLeft="@+id/trip_3"
-        android:layout_marginBottom="36dp"
-        android:onClick="previousTrip2"
-        android:text="Previous Trip 2" />
-
-    <Button
-        android:id="@+id/view_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/trip_3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:onClick="viewAllTrips"
-        android:text="View All" />
-
-    <Button
-        android:id="@+id/trip_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/trip_2"
-        android:layout_alignLeft="@+id/trip_2"
-        android:layout_marginBottom="36dp"
-        android:onClick="previousTrip1"
-        android:text="Previous Trip 1" />
 
 </RelativeLayout>

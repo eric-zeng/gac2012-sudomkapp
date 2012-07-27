@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue" 
-    android:padding="16dip">
+    android:padding="16dip"
+    android:title="@string/main_menu_menu_bar" >
 
     <Button
         android:id="@+id/new_trip"
