@@ -175,7 +175,7 @@ public class MapJournalMapActivity extends MapActivity
 
 		@Override
 		/**
-		 * start the JournalEntryActivity te display info of the point being tapped
+		 * start the JournalEntryActivity the display info of the point being tapped
 		 */
 		protected boolean onTap(int index)
 		{
