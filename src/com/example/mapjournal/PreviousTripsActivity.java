@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.app.ListActivity;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 public class PreviousTripsActivity extends ListActivity 
 {
 	DBOpenHelper db = new DBOpenHelper(this);
-	
+    public static final String PREFS_NAME = "PrefsFile";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,15 @@ public class PreviousTripsActivity extends ListActivity
 		super.onListItemClick(l, v, position, id);
 		Object o = this.getListAdapter().getItem(position);
 		String keyword = o.toString();
+		
+		SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putString("current", keyword);
+		editor.commit();
+		
+		Intent intent = new Intent(this, MapJournalMapActivity.class);
+		startActivity(intent);
+		
 		Toast.makeText(this, "You Have Selected: " + keyword, Toast.LENGTH_LONG).show();
 	}
 
