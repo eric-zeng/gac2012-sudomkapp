@@ -24,14 +24,9 @@ public class MainMenuActivity extends ListActivity {
     public static final String PREFS_NAME = "PrefsFile";
 	
 	@Override
-    public void onCreate(Bundle savedInstanceState) 
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        //Retrieve current trip from preferences 
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
-        currentTrip = prefs.getString("current", null);
-
         //setContentView(R.layout.activity_main_menu);
         String[] tripNames = new String[]{"New Trip", "Resume Trip", "Previous Trips"};
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));
@@ -40,73 +35,28 @@ public class MainMenuActivity extends ListActivity {
         // listening to single list item on click
         lv.setOnItemClickListener(new OnItemClickListener() {
           public void onItemClick(AdapterView<?> parent, View view,
-              int position, long id) 
-          {
+              int position, long id) {
  
               // selected item
               String product = ((TextView) view).getText().toString();
-              if(product == "New Trip")
-              {
-            	  Intent i = new Intent(getApplicationContext(), NewTripActivity.class);
-            	  i.putExtra("product", product);
-                  startActivity(i);
+              if(product == "New Trip"){
+            	  Intent intent = new Intent(getApplicationContext(), NewTripActivity.class);
+                  startActivity(intent);
               }
-              /*else if(product == "Resume Trip")
-              {
-            	  Intent i = new Intent(getApplicationContext(), ResumeTripActivity.class);
-            	  i.putExtra("product", product);
-              	  startActivity(i);
-              }*/
-              else
-              {
-            	  Intent i = new Intent(getApplicationContext(), PreviousTripsActivity.class);
-            	  i.putExtra("product", product);
-                  startActivity(i);
+              else if(product == "Resume Trip"){
+            	  Intent intent = new Intent(getApplicationContext(), MapJournalMapActivity.class);
+              	  startActivity(intent);
+              }
+              else{
+            	  Intent intent = new Intent(getApplicationContext(), PreviousTripsActivity.class);
+                  startActivity(intent);
               }
               // sending data to new activity
               
-    
-    }
+          }
         });
     }
-    
-    public void createNewTrip(View view){
-      	Intent intent = new Intent (MainMenuActivity.this, NewTripActivity.class);
-       	startActivity(intent);
-    }
-          
-    // Temporary - leads to journal entry
-    public void resumeTrip(View view){
-    	Intent intent = new Intent (MainMenuActivity.this, JournalEntryActivity.class);
-    	startActivity(intent);    	
-    }
-          
-    public void previousTrips(View view){
-       	Intent intent = new Intent (MainMenuActivity.this, PreviousTripsActivity.class);
-       	startActivity(intent);
-    }
-    
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO Auto-generated method stub
-		super.onListItemClick(l, v, position, id);
-		Object o = this.getListAdapter().getItem(position);
-		String keyword = o.toString();
-		if(keyword == "New Trip")
-		{
-			createNewTrip(v);
-		}
-		else if(keyword == "Resume Trip")
-		{
-			resumeTrip(v);
-		}
-		else
-		{
-			previousTrips(v);
-		}
-		//Toast.makeText(this, "You Have Selected: " + keyword, Toast.LENGTH_LONG).show();
-	}
-
-    
+       
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_menu, menu);
         return true;

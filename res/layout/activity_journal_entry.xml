@@ -2,43 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:title="@string/editor_menu_bar" >
+	
     <TextView
-        android:id="@+id/text_edit_title"
-        android:layout_width="match_parent"
+        android:id="@+id/note_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/text_edit_title"
+        android:textSize="@dimen/font_large" 
         android:textColor="@color/gray"
-        android:textSize="@dimen/font_medium" />
-
-    <EditText
-        android:id="@+id/text_editor"
+        android:text=""
+        />      
+        
+    <TextView
+        android:id="@+id/notes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_edit_title"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/note_title"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="32dp"
-        android:inputType="text" >
-    </EditText>
-
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/text_editor"
-        android:text="@string/cancel"
-        android:onClick="gotoMap" />
-		
+        android:textSize="@dimen/font_medium" 
+        android:text=""
+        />
+       
+    
     <Button
         android:id="@+id/submit_changes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/submit"
-        android:onClick="submitEdit" />
+        android:onClick="submitEdit"
+        android:text="@string/submit" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/submit_changes"
+        android:onClick="deletePoint"
+        android:text="@string/delete" />
+
+    <TextView
+        android:id="@+id/text_edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="@string/text_edit_title"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/font_medium" />
+
+    <EditText
+        android:id="@+id/text_editor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/text_edit_title"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="text"
+        android:scrollHorizontally="false" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

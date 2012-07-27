@@ -18,35 +18,38 @@
         <uses-library android:name="com.google.android.maps" />
         <activity
             android:name=".MainMenuActivity"
-            android:label="@string/title_activity_main_menu" >
+            android:label="@string/main_menu_menu_bar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="NewTrip"></activity>
-
-        <activity android:name=".NewTripActivity"></activity>
-        <activity android:name="PreviousTripsActivity"></activity>
+        
+        <activity 
+            android:name=".NewTripActivity"
+            android:label="@string/new_trip_menu_bar"></activity>
+        <activity 
+            android:name="PreviousTripsActivity"
+            android:label="@string/previous_menu_bar"></activity>
 
         
         <activity
             android:name=".MapJournalMapActivity"
-            android:label="@string/title_activity_main" >
-            
+            android:label="@string/main_menu_menu_bar" >  
         </activity>
         
         
         <activity
             android:name=".addPointActivity"
-            android:label="@string/title_activity_add_point" >
+            android:label="@string/add_point_menu_bar" >
         </activity>
         
         
-        <activity android:name=".JournalEntryActivity"> </activity>
-        <fragment android:name=".NotesTabFragment"></fragment>
-        <fragment android:name=".PicsTabFragment"></fragment>
+        <activity 
+            android:name=".JournalEntryActivity"
+            android:label="@string/editor_menu_bar"> </activity>
+
         
     </application>
 

@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,7 @@ public class MapJournalMapActivity extends MapActivity {
     public final static String LONGITUDE = "com.example.maptest.MainActivity.LONGITUDE";
     public final static String LATITUDE = "com.example.maptest.MainActivity.LATITUDE";
     private double latitude, longitude;
+    public static final String PREFS_NAME = "PrefsFile";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,16 +69,25 @@ public class MapJournalMapActivity extends MapActivity {
 		String locationProvider = LocationManager.NETWORK_PROVIDER;
 		
 		// add all trip points, and update location
+		
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
+        String currentTrip = prefs.getString("current", null);	
+        
+        if(null != currentTrip){
+        	DBOpenHelper db = new DBOpenHelper(this);
+        	addAllPoints(db.getTrip(currentTrip));
+        }
+		
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-		double latitude = lastKnownLocation.getLatitude();
-		double longitude = lastKnownLocation.getLongitude();
-		Intent intent = getIntent();
-		if(intent.getBooleanExtra(addPointActivity.ADD_SUCCESS, false))
-		{
-			addPoint(intent.getDoubleExtra(LATITUDE, -10000), 
-						intent.getDoubleExtra(LONGITUDE, -100000),
-						Long.toString(intent.getLongExtra(addPointActivity.POINT_ID, -1)), "");
-		}
+		latitude = lastKnownLocation.getLatitude();
+		longitude = lastKnownLocation.getLongitude();
+//		Intent intent = getIntent();
+//		if(intent.getBooleanExtra(addPointActivity.ADD_SUCCESS, false))
+//		{
+//			addPoint(intent.getDoubleExtra(LATITUDE, -10000), 
+//						intent.getDoubleExtra(LONGITUDE, -100000),
+//						Long.toString(intent.getLongExtra(addPointActivity.POINT_ID, -1)), "");
+//		}
     }
 
     @Override
@@ -112,11 +123,14 @@ public class MapJournalMapActivity extends MapActivity {
 		startActivity(intent);
 		return 0;
 	}
-	public int addAllPoints(ArrayList <Integer> tripPoint)// to be added
+	public int addAllPoints(ArrayList <Point> tripPoint)// to be added
 	{
 		for(int iter=0; iter<tripPoint.size(); iter++)
 		{
-			
+			addPoint(tripPoint.get(iter).getLatitude(), 
+						tripPoint.get(iter).getLongitude(),
+						Integer.toString(tripPoint.get(iter).getId()),
+						"");
 		}
 		return 0;
 	}
@@ -163,7 +177,7 @@ public class MapJournalMapActivity extends MapActivity {
 		List <Overlay> mapOverlays = mapView.getOverlays();
 		Drawable drawable=this.getResources().getDrawable(R.drawable.androidmarker);
 		MapTestItemizedOverlay itemizedOverlay = new MapTestItemizedOverlay(drawable, this);
-		GeoPoint point =new GeoPoint((int)(latitude*1E6), (int)(longitude*1E6));
+		GeoPoint point =new GeoPoint((int)(latitude), (int)(longitude));
 		OverlayItem overlayItem = new OverlayItem(point, title, snippet);
 		itemizedOverlay.addOverlay(overlayItem);
 		mapOverlays.add(itemizedOverlay);
