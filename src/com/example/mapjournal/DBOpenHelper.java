@@ -97,12 +97,19 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 
    		db.update(TABLE_POINTS, values, KEY_ID + " = ?",
    				new String[] { String.valueOf(point.getId()) });
+   		
+   		db.close();
    }
    
-   public void updateNote(long id, String note){
-	   Point point = getPoint(id);
-	   point.setNote(note);
+   public void updateNote(long Id, String note){
+	   SQLiteDatabase db = this.getWritableDatabase();
+	   ContentValues values = new ContentValues();
+	   values.put(KEY_NOTE, note);
+	   db.update(TABLE_POINTS, values, KEY_ID + " = ?",
+	  				new String[] { String.valueOf(Id) });
+	   db.close();
    }
+
    
    public String getNote(long id){
 	   Point point = getPoint(id);
@@ -118,10 +125,10 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	  
 	   if (cursor != null)
 		   cursor.moveToFirst();
-
 	   Point point = new Point(Integer.parseInt(cursor.getString(0)),
            cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
            Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)), cursor.getString(6));
+	   db.close();
 	   return point;
    }  
    
@@ -129,7 +136,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   
 	   ArrayList<String> trips = new ArrayList<String>();
 	   String selectQuery = "SELECT DISTINCT " + KEY_TRIPNAME + " as " + KEY_ID + " FROM " + TABLE_POINTS + " ORDER BY " + KEY_TIME  + " ASC"; 
-       SQLiteDatabase db = this.getWritableDatabase();
+       SQLiteDatabase db = this.getReadableDatabase();
        Cursor cursor = db.rawQuery(selectQuery, null);
 
        if (cursor.moveToFirst()) {
@@ -137,6 +144,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
         	   trips.add(cursor.getString(0));               
            } while (cursor.moveToNext());
        }
+       db.close();
        return trips;
    } 
    
@@ -144,7 +152,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   ArrayList<Point> trip = new ArrayList<Point>();
 	   String selectQuery = "SELECT * FROM " + TABLE_POINTS + " WHERE " + KEY_TRIPNAME + "=" + "'" + tripname + "'";
 
-       SQLiteDatabase db = this.getWritableDatabase();
+       SQLiteDatabase db = this.getReadableDatabase();
        Cursor cursor = db.rawQuery(selectQuery, null);
 
        if (cursor.moveToFirst()) {
@@ -161,6 +169,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
                trip.add(point);
            } while (cursor.moveToNext());
        }
+       db.close();
        return trip;
    } 
    
@@ -168,7 +177,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
        ArrayList<Point> allPoints = new ArrayList<Point>();
        String selectQuery = "SELECT  * FROM " + TABLE_POINTS;
 
-       SQLiteDatabase db = this.getWritableDatabase();
+       SQLiteDatabase db = this.getReadableDatabase();
        Cursor cursor = db.rawQuery(selectQuery, null);
 
        if (cursor.moveToFirst()) {
@@ -185,6 +194,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
                allPoints.add(point);
            } while (cursor.moveToNext());
        }
+       db.close();
        return allPoints;
    } 
    
