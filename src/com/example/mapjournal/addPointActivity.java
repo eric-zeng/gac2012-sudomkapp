@@ -1,5 +1,4 @@
 package com.example.mapjournal;
-import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.Intent;
