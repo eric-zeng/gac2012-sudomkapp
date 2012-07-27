@@ -50,7 +50,7 @@ public class JournalEntryActivity extends Activity {
 		// Put data into editor text box for editing
 		editor = (EditText) findViewById(R.id.text_editor);
 		editor.setText(note);
-		
+
 	}
 	
 	/**

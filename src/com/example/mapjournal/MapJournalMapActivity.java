@@ -73,8 +73,7 @@ public class MapJournalMapActivity extends MapActivity {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
         String currentTrip = prefs.getString("current", null);	
         
-        if(null != currentTrip)
-        {
+        if(null != currentTrip){
         	DBOpenHelper db = new DBOpenHelper(this);
         	addAllPoints(db.getTrip(currentTrip));
         }
