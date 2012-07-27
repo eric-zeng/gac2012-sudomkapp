@@ -52,7 +52,6 @@ public class PreviousTripsActivity extends ListActivity
 			Intent intent = new Intent(this, MapJournalMapActivity.class);
 			startActivity(intent);
 			
-			Toast.makeText(this, "You Have Selected: " + keyword, Toast.LENGTH_LONG).show();
     	}
 	}
 
