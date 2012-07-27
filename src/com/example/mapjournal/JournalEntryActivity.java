@@ -1,16 +1,20 @@
-// Eric Zeng
-// Retrieves information about a selected map point and allows the
-// user to edit it.
 
 package com.example.mapjournal;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+/**
+ * Displays the title and notes associated with the given point and allows the
+ * user to edit the notes or delete the point.
+ * @author Eric
+ *
+ */
+
 
 public class JournalEntryActivity extends Activity {
 	
@@ -19,12 +23,15 @@ public class JournalEntryActivity extends Activity {
 	private String note;
 	private DBOpenHelper db;
 	
-	// Gets text associate with a point and puts it in the text editor.
+	/**
+	 * When created, this activity displays information about the chosen point and 
+	 * allows it to be edited. 
+	 */
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_journal_entry);
 		
-		// Retrieve point from map
+		// Retrieve point information from map through intents
 		Intent intent = getIntent();
 		pointID = intent.getLongExtra(MapJournalMapActivity.ID, pointID);
 		
@@ -33,41 +40,45 @@ public class JournalEntryActivity extends Activity {
 		note = db.getNote(pointID);
 		String title = db.getPoint(pointID).getTitle();
 		
-		// Get title/notes of point, put into text views
+		// Put data and title from point into the empty text views
 		TextView noteTitle = (TextView) findViewById(R.id.note_title);
 		noteTitle.setText(title);
 		
 		TextView noteData = (TextView) findViewById(R.id.notes);
 		noteData.setText("Notes: " + note);
 		
-		// Put current text into editor text box
+		// Put data into editor text box for editing
 		editor = (EditText) findViewById(R.id.text_editor);
 		editor.setText(note);
 		
-		
-		
-		
-		
 	}
 	
-	// Adds changes to text to the database. 
+	/**
+	 * Submits the edited note text to the database and returns to
+	 * the map.
+	 * @param view
+	 */
 	public void submitEdit(View view){
 		note = editor.getText().toString();
 		db.updateNote(pointID, note);
-		Log.i("Editor", "Note edit submitted to database: " + note);
 		
 		gotoMap(view);
 	}
-	
+	/**
+	 * Deletes the point being edited from the database and returns
+	 * to the map.
+	 * @param view
+	 */
 	public void deletePoint(View view){
 		db.deletePoint(pointID);
-		Log.i("Editor", "Point deleted");
 		gotoMap(view);
 	}
 	
-	// Returns to the map activity.
+	/**
+	 * Returns to the map.
+	 * @param view
+	 */
 	public void gotoMap(View view){
-		Log.i("Editor", "Going to map activity");
 		Intent intent = new Intent(this, MapJournalMapActivity.class);
 		startActivity(intent);		
 	}	
