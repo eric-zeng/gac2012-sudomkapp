@@ -201,7 +201,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
                point.setTripname(cursor.getString(2));
                point.setLatitude(Integer.parseInt(cursor.getString(3)));
                point.setLongitude(Integer.parseInt(cursor.getString(4)));
-               point.setTime(Integer.parseInt(cursor.getString(5)));
+               point.setTime(Long.parseLong(cursor.getString(5)));
                point.setNote(cursor.getString(6));
                
                trip.add(point);
