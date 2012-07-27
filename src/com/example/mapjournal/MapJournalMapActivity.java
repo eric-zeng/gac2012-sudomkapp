@@ -24,8 +24,6 @@ import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.widget.Toast;
-
 /**
  * The activity to let user interact with the mapview, initiate addPointActivity and provide location information
  * @author Leo Dihong Gao
@@ -35,7 +33,6 @@ public class MapJournalMapActivity extends MapActivity
 {	
 	public final static String ID = "com.example.maptest.MainActivity.ID"; //Point ID identifier
     public LocationManager locationManager;
-    private final static String TAG="MainActivity";//Debug propose 
     public LocationListener locationListener;
     public MapView mapView;
     public final static String LONGITUDE = "com.example.maptest.MainActivity.LONGITUDE";//longitude label in outbound intent
@@ -148,6 +145,7 @@ public class MapJournalMapActivity extends MapActivity
 	 * @author Leo Dihong Gao
 	 *
 	 */
+	@SuppressWarnings("rawtypes")
 	public class MapTestItemizedOverlay extends  ItemizedOverlay {
 
 		private ArrayList <OverlayItem> mOverlays = new ArrayList<OverlayItem>();

@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * The activity handles new point creating and inserting it into the database
@@ -43,7 +41,6 @@ public class addPointActivity extends Activity {
     {
     	String name = ((EditText)findViewById(R.id.name)).getText().toString();
     	String note = ((EditText)findViewById(R.id.notes)).getText().toString();
-		Context context = getApplicationContext();
 		
 	    //Retrieve current trip from preferences 
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
