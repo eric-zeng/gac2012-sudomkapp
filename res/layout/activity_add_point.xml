@@ -11,14 +11,15 @@
         android:id="@+id/name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="name" />
+        android:hint="@string/add_name" />
+    
     <EditText
         android:id="@+id/notes"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:layout_alignParentLeft="true"
-        android:hint="Take some notes!"
+        android:hint="@string/add_notes"
          />
  
     <Button
@@ -27,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/notes"
         android:layout_alignParentLeft="true"
-        android:text="Add it"
+        android:text="@string/add_point"
         android:onClick="onAddClick" />
     
     
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/notes"
         android:layout_toRightOf="@id/done"
-        android:text="Take a picture"
+        android:text="@string/take_picture"
         
         />
     
