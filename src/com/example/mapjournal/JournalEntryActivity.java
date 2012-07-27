@@ -41,7 +41,7 @@ public class JournalEntryActivity extends Activity {
 	public void submitEdit(View view){
 		note = editor.getText().toString();
 		db.updateNote(pointID, note);
-		Log.i("Editor", "Note edit submitted to database");
+		Log.i("Editor", "Note edit submitted to database: " + note);
 		
 		gotoMap();
 	}
