@@ -1,4 +1,5 @@
 package com.example.mapjournal;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

@@ -3,7 +3,6 @@ package com.example.mapjournal;
 
 import java.util.ArrayList;
 
-import android.content.ClipData.Item;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class PreviousTripsActivity extends ListActivity 
 {
@@ -52,7 +50,6 @@ public class PreviousTripsActivity extends ListActivity
 			Intent intent = new Intent(this, MapJournalMapActivity.class);
 			startActivity(intent);
 			
-			Toast.makeText(this, "You Have Selected: " + keyword, Toast.LENGTH_LONG).show();
     	}
 	}
 
