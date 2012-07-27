@@ -37,8 +37,7 @@ public class addPointActivity extends Activity {
      * @param view
      * @return
      */
-    public int onAddClick(View view)
-    {
+    public int onAddClick(View view){
     	String name = ((EditText)findViewById(R.id.name)).getText().toString();
     	String note = ((EditText)findViewById(R.id.notes)).getText().toString();
 		
