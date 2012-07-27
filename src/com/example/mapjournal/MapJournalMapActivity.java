@@ -107,7 +107,7 @@ public class MapJournalMapActivity extends MapActivity
 	}
 	
 	/**
-	 * When the check in button is hitten, get the current location and pass that info in the intent to start addPointActivity
+	 * When the check in button is hit, get the current location and pass that info in the intent to start addPointActivity
 	 * @param menu
 	 * @return 0 on success
 	 */
@@ -117,19 +117,11 @@ public class MapJournalMapActivity extends MapActivity
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
 		latitude = lastKnownLocation.getLatitude();
 		longitude = lastKnownLocation.getLongitude();
-		
-		Context context = getApplicationContext();
-		CharSequence text = "Latitude: "+Double.toString(latitude)
-							+ "   Longitude: "+Double.toString(longitude);
-		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-		toast.show();
-		
 		addPoint(latitude, longitude, "Hello map", "I'm in somewhere");
 		
 		Intent intent = new Intent(this, addPointActivity.class);
 		intent.putExtra(LATITUDE, latitude);
-		intent.putExtra(LONGITUDE, longitude);
-		
+		intent.putExtra(LONGITUDE, longitude);		
 		startActivity(intent);
 		return 0;
 	}
