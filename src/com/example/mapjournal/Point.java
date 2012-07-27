@@ -7,11 +7,11 @@ package com.example.mapjournal;
  */
 public class Point {
 
-	private int _id;
+	private long _id;
 	private String _tripname;
 	private int _latitude;
 	private int _longitude;
-	private int _time;
+	private long _time;
 	private String _title;
 	private String _note;
 	
@@ -31,7 +31,7 @@ public class Point {
 	 * @param time Time point was visited
 	 * @param text Text of note
 	 */
-	public Point (String title, String tripname, int lat, int lng, int time, String text){
+	public Point (String title, String tripname, int lat, int lng, long time, String text){
 		this._tripname = tripname;
 		this._longitude = lng;
 		this._latitude = lat;
@@ -50,7 +50,7 @@ public class Point {
 	 * @param time Time point was visited
 	 * @param text Text of note
 	 */
-	public Point (int id, String title, String tripname, int lat, int lng, int time, String text){
+	public Point (int id, String title, String tripname, int lat, int lng, long time, String text){
 		this._id = id;
 		this._tripname = tripname;
 		this._longitude = lng;
@@ -61,7 +61,7 @@ public class Point {
 	}
 	
 	
-	public int getId() {
+	public long getId() {
 		return _id;
 	}
 
@@ -77,7 +77,7 @@ public class Point {
 		return _longitude;
 	}
 
-	public int getTime() {
+	public long getTime() {
 		return _time;
 	}
 
@@ -89,8 +89,8 @@ public class Point {
 		return _note;
 	}
 	
-	public void setID(int id) {
-		this._id = id;
+	public void setID(long Id) {
+		this._id = Id;
 	}
 
 	public void setTripname(String tripname) {
@@ -105,7 +105,7 @@ public class Point {
 		this._longitude = longitude;
 	}
 
-	public void setTime(int time) {
+	public void setTime(long time) {
 		this._time = time;
 	}
 
