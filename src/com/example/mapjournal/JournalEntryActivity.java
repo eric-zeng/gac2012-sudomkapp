@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class JournalEntryActivity extends Activity {
 	
@@ -30,10 +31,22 @@ public class JournalEntryActivity extends Activity {
 		// Retrieve current text of point from database
 		db = new DBOpenHelper(this);
 		note = db.getNote(pointID);
+		String title = db.getPoint(pointID).getTitle();
 		
-		// Put current text into text box
+		// Get title/notes of point, put into text views
+		TextView noteTitle = (TextView) findViewById(R.id.note_title);
+		noteTitle.setText(title);
+		
+		TextView noteData = (TextView) findViewById(R.id.notes);
+		noteData.setText("Notes: " + note);
+		
+		// Put current text into editor text box
 		editor = (EditText) findViewById(R.id.text_editor);
 		editor.setText(note);
+		
+		
+		
+		
 		
 	}
 	
