@@ -114,7 +114,6 @@ public class MapJournalMapActivity extends MapActivity
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
 		latitude = lastKnownLocation.getLatitude();
 		longitude = lastKnownLocation.getLongitude();
-		addPoint(latitude, longitude, "Hello map", "I'm in somewhere");
 		
 		Intent intent = new Intent(this, addPointActivity.class);
 		intent.putExtra(LATITUDE, latitude);
