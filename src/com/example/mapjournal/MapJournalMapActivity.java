@@ -194,8 +194,7 @@ public class MapJournalMapActivity extends MapActivity
 	 * @param snippet It's not being used. Put an empty string here (not null!) 
 	 * @return 0 on success
 	 */
-	private int addPoint(double latitude, double longitude, String title, String snippet)
-	{
+	private int addPoint(double latitude, double longitude, String title, String snippet){
 		List <Overlay> mapOverlays = mapView.getOverlays();
 		Drawable drawable=this.getResources().getDrawable(R.drawable.androidmarker);
 		MapTestItemizedOverlay itemizedOverlay = new MapTestItemizedOverlay(drawable, this);
