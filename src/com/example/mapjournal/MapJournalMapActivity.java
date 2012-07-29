@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -31,6 +32,7 @@ import android.view.MenuItem;
  */
 public class MapJournalMapActivity extends MapActivity 
 {	
+	private static final String TAG = "MapJournalMapActivity"; 
 	public final static String ID = "com.example.maptest.MainActivity.ID"; //Point ID identifier
     public LocationManager locationManager;
     public LocationListener locationListener;
@@ -124,10 +126,21 @@ public class MapJournalMapActivity extends MapActivity
 		Intent intent = new Intent(this, addPointActivity.class);
 		intent.putExtra(LATITUDE, latitude);
 		intent.putExtra(LONGITUDE, longitude);		
-		startActivity(intent);
+		startActivityForResult(intent, 0);
+
 		return 0;
 	}
-	
+	@Override
+	public void onRestart(){	
+		super.onRestart();
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
+        String currentTrip = prefs.getString("current", null);	        
+        if(null != currentTrip){
+        	DBOpenHelper db = new DBOpenHelper(this);
+        	addAllPoints(db.getTrip(currentTrip));
+        }
+		Log.d(TAG, "1");
+	}
 	/**
 	 * Add all points onto the map
 	 * @param tripPoint all the points to be added

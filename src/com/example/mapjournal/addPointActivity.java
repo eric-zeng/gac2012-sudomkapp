@@ -53,12 +53,13 @@ public class addPointActivity extends Activity {
         String currentTrip = prefs.getString("current", null);
 		DBOpenHelper db = new DBOpenHelper(this);
 		long id = db.addPoint(new Point(name, currentTrip, (int)(latitude*1E6), (int)(longitude*1E6), /**Calendar.getInstance().getTimeInMillis()*/ 1234, note));
-				
-		Intent intent = new Intent(this, MapJournalMapActivity.class);
-		intent.putExtra(POINT_ID, id);
-		intent.putExtra(MapJournalMapActivity.LATITUDE, latitude);
-		intent.putExtra(MapJournalMapActivity.LONGITUDE, longitude);				
-		startActivity(intent);
+		
+		super.onBackPressed();
+//		Intent intent = new Intent(this, MapJournalMapActivity.class);
+//		intent.putExtra(POINT_ID, id);
+//		intent.putExtra(MapJournalMapActivity.LATITUDE, latitude);
+//		intent.putExtra(MapJournalMapActivity.LONGITUDE, longitude);				
+//		startActivity(intent);
     	return 0;
     }
     
