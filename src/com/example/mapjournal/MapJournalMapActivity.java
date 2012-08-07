@@ -41,7 +41,8 @@ public class MapJournalMapActivity extends MapActivity
     public final static String LATITUDE = "com.example.maptest.MainActivity.LATITUDE";//latitude label in outbound intent
     private double latitude, longitude;
     public static final String PREFS_NAME = "PrefsFile";//the file name of the shared preference
-    
+    private MapTestItemizedOverlay iconOverlay;
+    private Drawable androidIcon;
     
     @Override
     /**
@@ -79,6 +80,10 @@ public class MapJournalMapActivity extends MapActivity
         // Load the mapView and make it zoomable
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
+        
+        androidIcon = this.getResources().getDrawable(R.drawable.androidmarker);
+        iconOverlay = new MapTestItemizedOverlay(androidIcon, this);
+        mapView.getOverlays().add(iconOverlay);        
         
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 5, locationListener);
 		String locationProvider = LocationManager.NETWORK_PROVIDER;
@@ -187,7 +192,7 @@ public class MapJournalMapActivity extends MapActivity
 		 * add a new overlay onto the map
 		 * @param overlay the overlay to be added onto the map
 		 */
-		public void addOverlay(OverlayItem overlay)
+		public void addItem(OverlayItem overlay)
 		{
 			mOverlays.add(overlay);
 			populate();
@@ -223,13 +228,9 @@ public class MapJournalMapActivity extends MapActivity
 	 * @return 0 on success
 	 */
 	private int addPoint(double latitude, double longitude, String title, String snippet){
-		List <Overlay> mapOverlays = mapView.getOverlays();
-		Drawable drawable=this.getResources().getDrawable(R.drawable.androidmarker);
-		MapTestItemizedOverlay itemizedOverlay = new MapTestItemizedOverlay(drawable, this);
 		GeoPoint point =new GeoPoint((int)(latitude), (int)(longitude));
 		OverlayItem overlayItem = new OverlayItem(point, title, snippet);
-		itemizedOverlay.addOverlay(overlayItem);
-		mapOverlays.add(itemizedOverlay);
+		iconOverlay.addItem(overlayItem);
 		return 0;
 	}
     
