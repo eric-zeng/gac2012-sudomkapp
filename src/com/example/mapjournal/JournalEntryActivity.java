@@ -79,8 +79,7 @@ public class JournalEntryActivity extends Activity {
 	 * @param view
 	 */
 	public void gotoMap(View view){
-		Intent intent = new Intent(this, MapJournalMapActivity.class);
-		startActivity(intent);		
+		super.onBackPressed();	
 	}	
 	
 }
