@@ -14,6 +14,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * The activity to let user interact with the mapview, initiate addPointActivity and provide location information
@@ -96,6 +98,16 @@ public class MapJournalMapActivity extends MapActivity
         	addAllPoints(db.getTrip(currentTrip));
         }
 		
+        ConnectivityManager myConnManagr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (null == myConnManagr.getActiveNetworkInfo())
+        	Toast.makeText(getApplicationContext(), 
+        			"No Internet connection, unable to refresh map and location information may be inaccurate.",
+        			Toast.LENGTH_LONG).show();
+        else if (false == myConnManagr.getActiveNetworkInfo().isConnected())
+        	Toast.makeText(getApplicationContext(), 
+        			"No Internet connection, unable to refresh map and location information may be inaccurate.", 
+        			Toast.LENGTH_LONG).show();
+        
 		Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
 		latitude = lastKnownLocation.getLatitude();
 		longitude = lastKnownLocation.getLongitude();
