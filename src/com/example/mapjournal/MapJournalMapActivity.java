@@ -175,6 +175,7 @@ public class MapJournalMapActivity extends MapActivity
 		Context mContext;
 		public MapTestItemizedOverlay(Drawable defaultMarker, Context context) {
 			super(boundCenterBottom(defaultMarker));
+			populate();
 			// TODO Auto-generated constructor stub
 			mContext=context;
 		}
