@@ -23,9 +23,8 @@
 	<string name="text_edit_title">Edit your journal entry</string>
 	<string name="cancel">Cancel</string>
 	<string name="delete">Delete Point</string>
-
-
-<!-- 	Used in addPointActivity, MapJournelMapActivity and MapTestItemizedOverlay -->
+	
+<!-- 	Used in addPointActivity, MapJournalMapActivity and MapTestItemizedOverlay -->
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">Map Journal</string>
     <string name="title_get_location">Check In!</string>
@@ -35,6 +34,9 @@
     <string name="add_notes">Write Notes (optional)</string>
     <string name="add_point">Add Point</string>
     <string name="take_picture">Take a Picture</string>
+    <string name="take_video">Take a Video</string>
+	<string name="album_name">MapJournal</string>
+	<string name="cannot">Feature does not work on this device</string>
 	
 <!-- Menu bar titles -->
 	<string name="main_menu_menu_bar">Map Journal</string>    

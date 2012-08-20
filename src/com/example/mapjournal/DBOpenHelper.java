@@ -16,7 +16,7 @@ import android.util.Log;
  */
 public class DBOpenHelper extends SQLiteOpenHelper{
 
-	private static final int VERSION = 6;  
+	private static final int VERSION = 7;  
 	static final String DATABASE_NAME = "MAPS";
 	private static final String TAG = "UPDATE_MAPS";
 	private static final String TABLE_POINTS = "points";
@@ -28,6 +28,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	private static final String KEY_LONGITUDE = "longitude";
 	private static final String KEY_TIME = "time";
 	private static final String KEY_NOTE = "note";
+	private static final String KEY_IMGLOC = "imgLoc";
 
    
    /**
@@ -41,7 +42,8 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 		   " latitude integer not null," +
 		   " longitude integer not null," +
 		   " time integer not null," +
-		   " note text);";
+		   " note text," +
+		   " imgLoc text);";
 
    /**
     * Instantiate class, which creates actual database if not created
@@ -87,6 +89,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   values.put(KEY_LONGITUDE, point.getLongitude());
 	   values.put(KEY_TIME, point.getTime());
 	   values.put(KEY_NOTE, point.getNote());
+	   values.put(KEY_IMGLOC, point.getPhotoPath());
 	   
 	   long id = db.insert(TABLE_POINTS, null, values);
 	   db.close();
@@ -130,17 +133,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	   db.close();
    }
 
-   /**
-    * Retrieves text of note of specified point
-    * @param id Id of point
-    * @return text of note
-    */
-   public String getNote(long id){
-	   Point point = getPoint(id);
-	   String text = point.getNote();
-	   return text;
-   }
-   
+
    /**
     * Retrieves point from db 
     * @param id Id of point
@@ -149,14 +142,14 @@ public class DBOpenHelper extends SQLiteOpenHelper{
    public Point getPoint(long id){
 	   SQLiteDatabase db = this.getReadableDatabase();
 	   Cursor cursor = db.query(TABLE_POINTS, new String[] {KEY_ID,
-           KEY_TITLE, KEY_TRIPNAME, KEY_LATITUDE, KEY_LONGITUDE, KEY_TIME, KEY_NOTE}, KEY_ID + "=?",
+           KEY_TITLE, KEY_TRIPNAME, KEY_LATITUDE, KEY_LONGITUDE, KEY_TIME, KEY_NOTE, KEY_IMGLOC}, KEY_ID + "=?",
            new String[] { String.valueOf(id) }, null, null, null, null);
 	  
 	   if (cursor != null)
 		   cursor.moveToFirst();
 	   Point point = new Point(Integer.parseInt(cursor.getString(0)),
            cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
-           Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)), cursor.getString(6));
+           Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)), cursor.getString(6), cursor.getString(7));
 	   db.close();
 	   return point;
    }  
@@ -203,6 +196,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
                point.setLongitude(Integer.parseInt(cursor.getString(4)));
                point.setTime(Long.parseLong(cursor.getString(5)));
                point.setNote(cursor.getString(6));
+               point.setImgLoc(cursor.getString(7));
                
                trip.add(point);
            } while (cursor.moveToNext());
@@ -232,6 +226,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
                point.setLongitude(Integer.parseInt(cursor.getString(4)));
                point.setTime(Long.parseLong(cursor.getString(5)));
                point.setNote(cursor.getString(6));
+               point.setImgLoc(cursor.getString(7));
                
                allPoints.add(point);
            } while (cursor.moveToNext());

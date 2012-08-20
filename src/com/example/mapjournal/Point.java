@@ -14,6 +14,7 @@ public class Point {
 	private long _time;
 	private String _title;
 	private String _note;
+	private String _imgLoc;
 	
 	/**
 	 * Empty constructor
@@ -30,14 +31,16 @@ public class Point {
 	 * @param lng longitude
 	 * @param time Time point was visited
 	 * @param text Text of note
+	 * @param imgLoc Location of image in memory
 	 */
-	public Point (String title, String tripname, int lat, int lng, long time, String text){
+	public Point (String title, String tripname, int lat, int lng, long time, String text, String imgLoc){
 		this._tripname = tripname;
 		this._longitude = lng;
 		this._latitude = lat;
 		this._time = time;
 		this._title = title;
 		this._note = text;
+		this._imgLoc = imgLoc;
 	}
 	
 	/**
@@ -49,8 +52,9 @@ public class Point {
 	 * @param lng longitude
 	 * @param time Time point was visited
 	 * @param text Text of note
+	 * @param imgLoc Location of image in memory
 	 */
-	public Point (int id, String title, String tripname, int lat, int lng, long time, String text){
+	public Point (int id, String title, String tripname, int lat, int lng, long time, String text, String imgLoc){
 		this._id = id;
 		this._tripname = tripname;
 		this._longitude = lng;
@@ -58,6 +62,7 @@ public class Point {
 		this._time = time;
 		this._title = title;
 		this._note = text;
+		this._imgLoc = imgLoc;
 	}
 	
 	
@@ -85,6 +90,10 @@ public class Point {
 		return _title;
 	}
 
+	public String getPhotoPath() {
+		return _imgLoc;
+	}
+	
 	public String getNote() {
 		return _note;
 	}
@@ -115,5 +124,9 @@ public class Point {
 
 	public void setNote(String note) {
 		this._note = note;
+	}
+	
+	public void setImgLoc(String loc){
+		this._imgLoc = loc;
 	}
 }
