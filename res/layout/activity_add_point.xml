@@ -29,11 +29,6 @@
         android:layout_height="wrap_content" 
         />
     
-    <VideoView
-        android:id="@+id/vidView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        />
     
     <Button
         android:id="@+id/done"
@@ -53,13 +48,5 @@
         android:text="@string/take_picture"
         />
     
-    <Button
-        android:id="@+id/btnVid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/notes"
-        android:layout_toRightOf="@id/btnPic"
-        android:text="@string/take_video"
-        />
 
 </RelativeLayout>

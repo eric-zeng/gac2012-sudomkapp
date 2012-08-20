@@ -34,7 +34,6 @@
     <string name="add_notes">Write Notes (optional)</string>
     <string name="add_point">Add Point</string>
     <string name="take_picture">Take a Picture</string>
-    <string name="take_video">Take a Video</string>
 	<string name="album_name">MapJournal</string>
 	<string name="cannot">Feature does not work on this device</string>
 	

@@ -25,7 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.VideoView;
+//import android.widget.VideoView;
 
 /**
  * The activity handles new point creating and inserting it into the database
@@ -38,17 +38,17 @@ public class addPointActivity extends Activity {
 	public static final String POINT_ID = "com.example.mapjournal.addPointActivity.POINT_ID"; 
 	
 	private static final int ACTION_TAKE_PHOTO_B = 1;
-	private static final int ACTION_TAKE_VIDEO = 3;
+	//private static final int ACTION_TAKE_VIDEO = 3;
 
 	private static final String BITMAP_STORAGE_KEY = "viewbitmap";
 	private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
 	private ImageView mImageView;
 	private Bitmap mImageBitmap;
 
-	private static final String VIDEO_STORAGE_KEY = "viewvideo";
+	/*private static final String VIDEO_STORAGE_KEY = "viewvideo";
 	private static final String VIDEOVIEW_VISIBILITY_STORAGE_KEY = "videoviewvisibility";
 	private VideoView mVideoView;
-	private Uri mVideoUri;
+	private Uri mVideoUri;*/
 
 	private String mCurrentPhotoPath;
 	private String photoPath;
@@ -70,9 +70,9 @@ public class addPointActivity extends Activity {
         latitude = intent.getDoubleExtra(MapJournalMapActivity.LATITUDE, Integer.MAX_VALUE); 
         
         mImageView = (ImageView) findViewById(R.id.imageView);
-		mVideoView = (VideoView) findViewById(R.id.vidView);
+		//mVideoView = (VideoView) findViewById(R.id.vidView);
 		mImageBitmap = null;
-		mVideoUri = null;
+		//mVideoUri = null;
 
 		Button picBtn = (Button) findViewById(R.id.btnPic);
 		setBtnListenerOrDisable( 
@@ -81,12 +81,12 @@ public class addPointActivity extends Activity {
 				MediaStore.ACTION_IMAGE_CAPTURE
 		);
 
-		Button vidBtn = (Button) findViewById(R.id.btnVid);
+		/*Button vidBtn = (Button) findViewById(R.id.btnVid);
 		setBtnListenerOrDisable( 
 				vidBtn, 
 				mTakeVidOnClickListener,
 				MediaStore.ACTION_VIDEO_CAPTURE
-		);
+		);*/
 		
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
 			mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
@@ -207,9 +207,9 @@ public class addPointActivity extends Activity {
 		
 		/* Associate the Bitmap to the ImageView */
 		mImageView.setImageBitmap(bitmap);
-		mVideoUri = null;
+//		mVideoUri = null;
 		mImageView.setVisibility(View.VISIBLE);
-		mVideoView.setVisibility(View.INVISIBLE);
+//		mVideoView.setVisibility(View.INVISIBLE);
 		
 	}
 
@@ -249,11 +249,11 @@ public class addPointActivity extends Activity {
 		startActivityForResult(takePictureIntent, actionCode);
 	}
 
-	private void dispatchTakeVideoIntent() {
+/*	private void dispatchTakeVideoIntent() {
 		Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 		startActivityForResult(takeVideoIntent, ACTION_TAKE_VIDEO);
 	}
-
+*/
 	private void handleBigCameraPhoto() {
 
 		if (mCurrentPhotoPath != null) {
@@ -264,14 +264,15 @@ public class addPointActivity extends Activity {
 
 	}
 
-	private void handleCameraVideo(Intent intent) {
+/*	private void handleCameraVideo(Intent intent) {
 		mVideoUri = intent.getData();
 		mVideoView.setVideoURI(mVideoUri);
 		mImageBitmap = null;
 		mVideoView.setVisibility(View.VISIBLE);
 		mImageView.setVisibility(View.INVISIBLE);
 	}
-
+*/
+	
 	Button.OnClickListener mTakePicOnClickListener = 
 		new Button.OnClickListener() {
 		@Override
@@ -281,13 +282,14 @@ public class addPointActivity extends Activity {
 	};
 
 
-	Button.OnClickListener mTakeVidOnClickListener = 
+/*	Button.OnClickListener mTakeVidOnClickListener = 
 		new Button.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			dispatchTakeVideoIntent();
 		}
 	};
+*/
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -299,12 +301,12 @@ public class addPointActivity extends Activity {
 			break;
 		} // ACTION_TAKE_PHOTO_B
 
-		case ACTION_TAKE_VIDEO: {
+	/*	case ACTION_TAKE_VIDEO: {
 			if (resultCode == RESULT_OK) {
 				handleCameraVideo(data);
 			}
 			break;
-		} // ACTION_TAKE_VIDEO
+		} // ACTION_TAKE_VIDEO*/
 		} // switch
 	}
 
@@ -312,9 +314,9 @@ public class addPointActivity extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
-		outState.putParcelable(VIDEO_STORAGE_KEY, mVideoUri);
+		//outState.putParcelable(VIDEO_STORAGE_KEY, mVideoUri);
 		outState.putBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY, (mImageBitmap != null) );
-		outState.putBoolean(VIDEOVIEW_VISIBILITY_STORAGE_KEY, (mVideoUri != null) );
+		//outState.putBoolean(VIDEOVIEW_VISIBILITY_STORAGE_KEY, (mVideoUri != null) );
 		super.onSaveInstanceState(outState);
 	}
 
@@ -322,17 +324,17 @@ public class addPointActivity extends Activity {
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		mImageBitmap = savedInstanceState.getParcelable(BITMAP_STORAGE_KEY);
-		mVideoUri = savedInstanceState.getParcelable(VIDEO_STORAGE_KEY);
+		//mVideoUri = savedInstanceState.getParcelable(VIDEO_STORAGE_KEY);
 		mImageView.setImageBitmap(mImageBitmap);
 		mImageView.setVisibility(
 				savedInstanceState.getBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY) ? 
 						ImageView.VISIBLE : ImageView.INVISIBLE
 		);
-		mVideoView.setVideoURI(mVideoUri);
+		/*mVideoView.setVideoURI(mVideoUri);
 		mVideoView.setVisibility(
 				savedInstanceState.getBoolean(VIDEOVIEW_VISIBILITY_STORAGE_KEY) ? 
 						ImageView.VISIBLE : ImageView.INVISIBLE
-		);
+		);*/
 	}
 
 	/**
