@@ -112,6 +112,7 @@ public class addPointActivity extends Activity {
     	String name = ((EditText)findViewById(R.id.name)).getText().toString();
     	String note = ((EditText)findViewById(R.id.notes)).getText().toString();
 		
+    	Log.d("photobath", photoPath);
 	    //Retrieve current trip from preferences 
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
         String currentTrip = prefs.getString("current", null);

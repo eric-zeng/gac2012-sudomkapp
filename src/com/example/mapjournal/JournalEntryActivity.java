@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,13 +29,13 @@ public class JournalEntryActivity extends Activity {
 	private DBOpenHelper db;
 	private ImageView mImageView;
 	private Bitmap mImageBitmap;
-	private VideoView mVideoView;
-	private Uri mVideoUri;
+	//private VideoView mVideoView;
+	//private Uri mVideoUri;
 	private static final String BITMAP_STORAGE_KEY = "viewbitmap";
 	private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
 
-	private static final String VIDEO_STORAGE_KEY = "viewvideo";
-	private static final String VIDEOVIEW_VISIBILITY_STORAGE_KEY = "videoviewvisibility";
+	/*private static final String VIDEO_STORAGE_KEY = "viewvideo";
+	private static final String VIDEOVIEW_VISIBILITY_STORAGE_KEY = "videoviewvisibility";*/
 	
 	/**
 	 * When created, this activity displays information about the chosen point and 
@@ -45,9 +46,9 @@ public class JournalEntryActivity extends Activity {
 		setContentView(R.layout.activity_journal_entry);
 		
 	    mImageView = (ImageView) findViewById(R.id.imageView);
-	    mVideoView = (VideoView) findViewById(R.id.vidView);
+	    //mVideoView = (VideoView) findViewById(R.id.vidView);
 		mImageBitmap = null;
-		mVideoUri = null;
+		//mVideoUri = null;
 		
 		// Retrieve point information from map through intents
 		Intent intent = getIntent();
@@ -59,6 +60,7 @@ public class JournalEntryActivity extends Activity {
 		note = point.getNote();
 		String title = point.getTitle();
 		String photoPath = point.getPhotoPath();
+		Log.d("ppath", photoPath);
 		if (null != photoPath)
 			getPic(photoPath);
 				
@@ -98,7 +100,7 @@ public class JournalEntryActivity extends Activity {
 		}
 		else if ((targetW > 0))
 			scaleFactor = photoW/targetW;
-		else
+		else if (targetH > 0)
 			scaleFactor = photoH/targetH;
 
 		/* Set bitmap options to scale the image decode target */
@@ -111,18 +113,18 @@ public class JournalEntryActivity extends Activity {
 		
 		/* Associate the Bitmap to the ImageView */
 		mImageView.setImageBitmap(bitmap);
-		mVideoUri = null;
+		//mVideoUri = null;
 		mImageView.setVisibility(View.VISIBLE);
-		mVideoView.setVisibility(View.INVISIBLE);
+		//mVideoView.setVisibility(View.INVISIBLE);
 	}
 
 	// Some lifecycle callbacks so that the image can survive orientation change
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
-		outState.putParcelable(VIDEO_STORAGE_KEY, mVideoUri);
+		//outState.putParcelable(VIDEO_STORAGE_KEY, mVideoUri);
 		outState.putBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY, (mImageBitmap != null) );
-		outState.putBoolean(VIDEOVIEW_VISIBILITY_STORAGE_KEY, (mVideoUri != null) );
+	//	outState.putBoolean(VIDEOVIEW_VISIBILITY_STORAGE_KEY, (mVideoUri != null) );
 		super.onSaveInstanceState(outState);
 	}
 
@@ -130,17 +132,17 @@ public class JournalEntryActivity extends Activity {
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		mImageBitmap = savedInstanceState.getParcelable(BITMAP_STORAGE_KEY);
-		mVideoUri = savedInstanceState.getParcelable(VIDEO_STORAGE_KEY);
+		//mVideoUri = savedInstanceState.getParcelable(VIDEO_STORAGE_KEY);
 		mImageView.setImageBitmap(mImageBitmap);
 		mImageView.setVisibility(
 				savedInstanceState.getBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY) ? 
 						ImageView.VISIBLE : ImageView.INVISIBLE
 		);
-		mVideoView.setVideoURI(mVideoUri);
+	/*	mVideoView.setVideoURI(mVideoUri);
 		mVideoView.setVisibility(
 				savedInstanceState.getBoolean(VIDEOVIEW_VISIBILITY_STORAGE_KEY) ? 
 						ImageView.VISIBLE : ImageView.INVISIBLE
-		);
+		);*/
 	}
 	
 	/**
