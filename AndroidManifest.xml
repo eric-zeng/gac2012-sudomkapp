@@ -48,7 +48,8 @@
         
         <activity 
             android:name=".JournalEntryActivity"
-            android:label="@string/editor_menu_bar"> </activity>
+            android:label="@string/editor_menu_bar">            
+        </activity>
 
         
     </application>
