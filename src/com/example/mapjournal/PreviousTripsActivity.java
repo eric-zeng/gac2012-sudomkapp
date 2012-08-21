@@ -3,9 +3,11 @@ package com.example.mapjournal;
 
 import java.util.ArrayList;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +28,7 @@ public class PreviousTripsActivity extends ListActivity
 	private boolean delete;
 	private ArrayList<String> tripNames;
     public static final String PREFS_NAME = "PrefsFile";
+    private String keyword;
     
     /**
      * Loads trips from the database into the list. 
@@ -49,13 +52,37 @@ public class PreviousTripsActivity extends ListActivity
 	protected void onListItemClick(ListView l, View v, int position, long id) {
     	super.onListItemClick(l, v, position, id);
 		Object o = this.getListAdapter().getItem(position);
-		String keyword = o.toString();
+		keyword = o.toString();
     	
 		// Delete mode on
     	if(delete){
+    		
+    		// Dialog box for delete confirmation. Not working
+    		/*
+    		final AlertDialog ad = new AlertDialog.Builder(this).create();
+    		ad.setTitle("Delete confirmation");
+    		ad.setMessage("Do you really want to delete " + keyword +"?");
+    		
+    		ad.setButton(-2, "No",  new DialogInterface.OnClickListener() {
+			      public void onClick(DialogInterface dialog, int which) {
+			    	  ad.dismiss();
+			    	  return;
+			      }   
+			} );
+    		ad.setButton(-1, "Yes",  new DialogInterface.OnClickListener() {
+			      public void onClick(DialogInterface dialog, int which) {
+			    	  deleteHelper(keyword);		    	  
+			    	  ad.dismiss();
+			      }
+			} );
+    		
+    		ad.show(); */
+    		
     		tripNames.remove(keyword);
-    		db.deleteTrip(keyword);
+        	db.deleteTrip(keyword);
     		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tripNames));
+
+    		
     	// Delete mode off
     	}else{
 			SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
@@ -65,9 +92,10 @@ public class PreviousTripsActivity extends ListActivity
 			
 			Intent intent = new Intent(this, MapJournalMapActivity.class);
 			startActivity(intent);
-			
+			finish();
     	}
 	}
+    
     
     /**
      * Creates the delete button in the action bar. 

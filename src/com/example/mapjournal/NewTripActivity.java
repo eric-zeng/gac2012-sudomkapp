@@ -52,6 +52,7 @@ public class NewTripActivity extends Activity {
 			
 			Intent intent = new Intent (this, MapJournalMapActivity.class);
 	    	startActivity(intent);    	
+	    	finish();
 	    
 	    // User has not submitted a valid string (launches dialog box)
 		} else { 
