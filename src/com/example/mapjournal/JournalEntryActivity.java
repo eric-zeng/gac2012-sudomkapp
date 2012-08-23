@@ -60,7 +60,7 @@ public class JournalEntryActivity extends Activity {
 		note = point.getNote();
 		String title = point.getTitle();
 		String photoPath = point.getPhotoPath();
-		Log.d("ppath", photoPath);
+//		Log.d("ppath", photoPath);
 		if (null != photoPath)
 			getPic(photoPath);
 				
